@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: biblatex config
+# key: <biblatex-config
+# --
+\usepackage[backend=biber, style=alphabetic, bibstyle=alphabetic]{biblatex}
+\addbibresource{bibliography.bib}

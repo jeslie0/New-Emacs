@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: Jekyll Post header
+# key: <JPl
+# --
+
+#+STARTUP: showall indent
+#+STARTUP: hidestars
+#+BEGIN_EXPORT html
+---
+layout: post
+title: $0
+---
+#+END_EXPORT

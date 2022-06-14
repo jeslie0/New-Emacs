@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Unstable nixpkgs
+# key: unstable
+# --
+nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";

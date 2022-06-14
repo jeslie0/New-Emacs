@@ -1,4 +1,4 @@
-;;; jl-rainbow-delimeters.el --- jl rainbow-delimeters configuration -*- lexical-binding: t -*-
+;;; jl-rainbow-delimiters.el --- jl rainbow-delimiters configuration -*- lexical-binding: t -*-
 
 ;; Author: James Leslie <jamesleslie@posteo.net>
 ;; Created: 13-06-2022
@@ -30,5 +30,5 @@
   :defer t
   :hook ((prog-mode agda2-mode) . rainbow-delimiters-mode))
 
-(provide 'jl-rainbow-delimeters)
-;;; jl-rainbow-delimeters.el ends here
+(provide 'jl-rainbow-delimiters)
+;;; jl-rainbow-delimiters.el ends here

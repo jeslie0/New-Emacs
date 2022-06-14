@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: cvtag
+# key: <cvtag
+# --
+{{{cvtag($0)}}}

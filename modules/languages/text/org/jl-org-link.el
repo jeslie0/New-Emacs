@@ -1,4 +1,4 @@
-;;; jl-ob-aync.el --- jl ob-aync configuration -*- lexical-binding: t -*-
+;;; jl-org-link.el --- jl org-link configuration -*- lexical-binding: t -*-
 
 ;; Author: James Leslie <jamesleslie@posteo.net>
 ;; Created: 13-06-2022
@@ -26,9 +26,9 @@
 
 ;;; Code:
 
-(use-package ob-async
-  :after org
-  :defer t)
+(use-package orglink
+  :init
+  (global-orglink-mode))
 
-(provide 'jl-ob-aync)
-;;; jl-ob-aync.el ends here
+(provide 'jl-org-link)
+;;; jl-org-link.el ends here

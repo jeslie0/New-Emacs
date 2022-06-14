@@ -38,10 +38,10 @@
            "l"  'undo-tree-visualize-switch-branch-right)
   (jl/SPC-keys
     "au" 'undo-tree-visualize)
-  (:states 'normal
-   "p" 'counsel-yank-pop
-   "C-r" 'undo-tree-redo
-   "u" 'undo-tree-undo)
+  ;; (:states 'normal
+  ;;  "p" 'consult-yank-pop
+  ;;  "C-r" 'undo-tree-redo
+  ;;  "u" 'undo-tree-undo)
   :custom
   (undo-tree-history-directory-alist '(("." . "~/.emacs.d/tmp/undotree/")))
   (undo-tree-visualizer-timestamps t)

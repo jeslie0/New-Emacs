@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Agda block
+# key: agda
+# --
+#+begin_src agda2
+  $0
+#+end_src

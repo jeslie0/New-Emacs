@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Bibliography
+# key: bibliography
+# --
+
+\bibliography{/home/james/Dropbox/Documents/TeX/common/bibliography}
+\bibliographystyle{alpha}

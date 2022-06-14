@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Latex Notes Header
+# key: <math
+# --
+#+LATEX_HEADER: \input{org-math-packages.tex} \usepackage{math-macros} \usepackage{math-environments}

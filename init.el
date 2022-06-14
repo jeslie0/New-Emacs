@@ -57,7 +57,7 @@
    jl-gcmh
    jl-cleaning
 
-   ;;; Keybindings
+   ;; ;;; Keybindings
    jl-evil
    jl-evil-collection
    jl-evil-commentary
@@ -157,7 +157,7 @@
    ;;;;; C#
   jl-csharp
   jl-omnisharp
-  jl-tree sitter
+  jl-tree-sitter
   jl-tree-sitter-langs
   jl-tree-sitter-indent
 
@@ -205,12 +205,15 @@
   jl-org-babel
   jl-ob-async
   jl-evil-org
+
   ;; jl-org-caldav
+
   jl-org-present
   jl-org-toc
   jl-ox-publish
   jl-ox-extra
   jl-engrave-faces
+  jl-org-link
 
   jl-org-ref
   jl-org-ref-arxiv
@@ -226,7 +229,7 @@
   jl-auctex-latexmk
   jl-lsp-latex
 
-  ;; jl-ivy-bibtex
+  jl-ivy-bibtex
 
    ;;;; Other
   jl-yaml-mode
@@ -249,8 +252,8 @@
   jl-org-mime
 
   ;;; Yasnippets
-  jl-yasnippets
-  jl-consult-yasnippets
+  jl-yasnippet
+  jl-consult-yasnippet
   jl-yasnippet-snippets
   jl-haskell-snippets
   jl-yatemplate
@@ -313,3 +316,16 @@
    ))
 
 (jl/load-theme 'doom-palenight)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("47db50ff66e35d3a440485357fb6acb767c100e135ccdf459060407f8baea7b2" default)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
