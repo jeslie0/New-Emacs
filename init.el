@@ -71,6 +71,7 @@
    ;;;; Vertico
    jl-vertico
    jl-embark
+   jl-embark-consult
    jl-marginalia
    jl-consult
    jl-orderless
