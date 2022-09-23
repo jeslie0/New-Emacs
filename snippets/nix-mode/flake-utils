@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: flake-utils
+# key: <utils
+# --
+inputs.flake-utils.url = "github:numtide/flake-utils";
+inputs.flake-utils.inputs.nixpkgs.follows = "nixpkgs";

@@ -1,0 +1,78 @@
+#!/usr/bin/env -S emacs --script
+;;; -*- lexical-binding: t -*-
+;; The purpose of this file is two fold. Firstly, it looks in the
+;; "../modules" folder and generates an alist of modules to their
+;; path. Secondly, it looks in the users "../modules.el" file and
+;; concatenates the users modules into the init.el file. This will
+;; also inject the alist as a variable into the user's init file, so
+;; they can see what modules are available for them to use.
+
+
+;;; Code:
+
+(defun f-expand (path &optional dir)
+  "Expand PATH relative to DIR (or `default-directory').
+PATH and DIR can be either a directory names or directory file
+names.  Return a directory name if PATH is a directory name, and
+a directory file name otherwise.  File name handlers are
+ignored."
+  (let (file-name-handler-alist)
+    (expand-file-name path dir)))
+
+(defun f-same-p (path-a path-b)
+  "Return t if PATH-A and PATH-B are references to same file."
+  (equal
+   (file-truename (directory-file-name (f-expand path-a)))
+   (file-truename (directory-file-name (f-expand path-b)))))
+
+(defun f-relative-p (path)
+  "Return t if PATH is relative, false otherwise."
+  (not (file-name-absolute-p path)))
+
+(defun f-dirname (path)
+  "Return the parent directory to PATH."
+  (let ((parent (file-name-directory
+                 (directory-file-name (f-expand path default-directory)))))
+    (unless (f-same-p path parent)
+      (if (f-relative-p path)
+          (file-relative-name parent)
+        (directory-file-name parent)))))
+
+(defun f-this-file ()
+  "Return path to this file."
+  (cond
+   (load-in-progress load-file-name)
+   ((and (boundp 'byte-compile-current-file) byte-compile-current-file)
+    byte-compile-current-file)
+   (:else (buffer-file-name))))
+
+(load-file (expand-file-name "../modules.el"))
+
+
+(defun file-name-list-to-string (file-list)
+  "Given a FILE-LIST, take each file and concatenate them all together, in order."
+  (with-temp-file (format "%s/init.el" (f-dirname (f-dirname (f-this-file))))
+    (insert ";; -*- lexical-binding: t -*- \n")
+    (goto-char (point-max))
+    (mapc #'(lambda (file)
+              (insert-file-contents (expand-file-name file))
+              (goto-char (point-max)))
+          file-list)
+    (insert (format "(setq modules-alist '%s)" user-modules))
+    ))
+
+(defun f-filename (path)
+  "Return the name of PATH."
+  (file-name-nondirectory (directory-file-name path)))
+
+(setq modules-alist
+  ;; "Generates an alist of module names and their paths."
+  (let ((module-paths (directory-files-recursively (format "%s/modules/" (f-dirname (f-dirname (f-this-file)))) "")) )
+    (mapcar (lambda (path) `(,(intern (file-name-sans-extension (f-filename path))) . ,path)) module-paths)))
+
+(file-name-list-to-string (mapcar (lambda (key) (alist-get key modules-alist)) user-modules))
+
+
+;; Local Variables:
+;; mode: emacs-lisp
+;; End:

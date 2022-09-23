@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Language extension
+# key: <lang
+# --
+{-# LANGUAGE $0 #-}

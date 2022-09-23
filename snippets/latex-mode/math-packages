@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: math packages
+# key: <math-packages
+# --
+
+\usepackage{math-packages}
+\usepackage{math-macros}
+\usepackage{math-environments}
+\usepackage{counters}

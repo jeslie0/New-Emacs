@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: latex auto preview
+# key: latex
+# --
+#+STARTUP: latexpreview inlineimages hideblocks

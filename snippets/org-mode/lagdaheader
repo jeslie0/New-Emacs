@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Lagda file header
+# key: lagda
+# --
+#+title: $0
+#+author: James Leslie
+#+STARTUP: noindent hideblocks latexpreview
+* Prelude

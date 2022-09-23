@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: C-src block
+# key: <C
+# --
+#+begin_src C
+$0
+#+end_src

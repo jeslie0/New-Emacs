@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Library section
+# key: <library
+# --
+library
+  hs-source-dirs:      src
+  exposed-modules:     $1
+  build-depends:       base ^>=4.14.1.0

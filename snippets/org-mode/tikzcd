@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: tikzcd diagram
+# key: tikzcd
+# --
+\begin{tikzcd}
+    $0
+\end{tikzcd}

@@ -1,0 +1,204 @@
+# -*- mode: snippet -*-
+# name: Notes preamble
+# key: <notes
+# --
+\documentclass[12pt]{article}
+\makeindex
+
+\usepackage[bitstream-charter]{mathdesign}
+\usepackage[T1]{fontenc}
+
+%Packages----------------------------------------------------
+%---Mathematics----------------------
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+ %\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{ebproof}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{stmaryrd}
+\usepackage{tikz-cd}
+
+%---other----------------------------
+\usepackage{todonotes}
+\usepackage{url}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{xcolor}
+\usepackage{scalerel}
+
+% patch--------
+\usepackage[bitstream-charter]{mathdesign}
+\let\circledS\undefined % here - PS
+\usepackage{amssymb}
+
+%---Hypereferenceing---------------------
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=green,
+    filecolor=green,
+    linkcolor=black,
+    urlcolor=blue
+}
+
+%---Structure-------------------------
+\usepackage{geometry}
+\geometry{a4paper}%, left = 10mm, right = 10mm, top = 10mm}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}% Change page style to fancy
+\fancyhf{}% Clear header/footer
+\fancyhead[R]{\rightmark}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}% Default \headrulewidth is 0.4pt
+\renewcommand{\footrulewidth}{0.4pt}% Default \footrulewidth is 0pt
+
+%textboxes-------------------------------------
+\usepackage{tcolorbox}
+\tcbset{colback=blue!5!white,colframe=blue!75!black}
+
+
+% Diagrams-------------------------------------------
+\newcommand{\PBarrow}{\arrow[dr, phantom, "\lrcorner", very near start]}
+
+% Counters--------------------------------------------
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+% Indexing--------------------------------------------
+\newcommand{\indx}[1]{\index{#1}\textbf{\textcolor{blue}{#1}}}
+
+
+% %Macros----------------------------------------
+%Sets---------------------------------------------
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+
+
+%Categories---------------------------------------
+\newcommand{\A}{\mathscr{A}}
+\newcommand{\smallA}{\mathbb{A}}
+\newcommand{\B}{\mathscr{B}}
+%\newcommand{\C}{\mathscr{C}}
+\newcommand{\D}{\mathscr{D}}
+\newcommand{\E}{\mathscr{E}}
+\newcommand{\smallE}{\mathbb{E}}
+\renewcommand{\H}{\mathcal{H}}
+\newcommand{\M}{\mathcal{M}}
+\renewcommand{\O}{\mathscr{O}}
+\newcommand{\W}{\mathcal{W}}
+
+\newcommand{\CAT}{\mathbf{CAT}}
+\newcommand{\Cat}{\mathbf{Cat}}
+\newcommand{\CxlCat}{\operatorname{CxlCat}}
+\newcommand{\Grp}{\mathbf{Grp}}
+\newcommand{\Gpd}{\mathbf{Gpd}}
+\newcommand{\FibCat}{\operatorname{FibCat}}
+\newcommand{\FinSet}{\mathbf{FinSet}}
+\newcommand{\Mod}{\mathbf{Mod}}
+\newcommand{\Pos}{\mathbf{Pos}}
+\newcommand{\Ring}{\mathbf{Ring}}
+\newcommand{\Set}{\mathbf{Set}}
+\newcommand{\sSet}{\mathbf{sSet}}
+\newcommand{\Top}{\mathbf{Top}}
+\newcommand{\Vect}{\mathbf{Vect}}
+
+\newcommand{\Deltaaug}{\Delta_\operatorname{aug}}
+
+%Relations-------------------------------------------
+\newcommand{\adjoint}{\dashv}
+\newcommand{\iso}{\cong}
+
+%Functions-------------------------------------------
+\newcommand{\colim}[2]{\operatorname{colim}_{#1}(#2)}
+\renewcommand{\lim}[2]{\operatorname{lim}_{#1}(#2)}
+\newcommand{\dom}{\operatorname{dom}}
+\newcommand{\cod}{\operatorname{cod}}
+\newcommand{\Ho}{\operatorname{Ho}}
+\newcommand{\pp}{\hat{\otimes}}
+\newcommand{\res}{\operatorname{res}}
+
+%Other symbols---------------------------------------
+\renewcommand{\op}{{op}}
+\newcommand{\ob}{\operatorname{ob}}
+\newcommand{\vsim}{\mathbin{\rotatebox[origin=c]{90}{$\sim$}}}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\Path}[3]{\operatorname{Path_{#1}}\:{#2}\;{#3}}
+\newcommand{\comp}{\operatorname{comp}}
+
+
+%Topology----------------------------------------------
+\newcommand{\RP}{\mathbb{RP}}
+
+%Contextual categories------------------------------------
+\newcommand{\Ob}{\textbf{Ob}}
+\newcommand{\ft}{\operatorname{ft}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\Id}{\operatorname{Id}}
+\newcommand{\Tm}{\operatorname{Tm}}
+\newcommand{\Ty}{\operatorname{Ty}}
+\newcommand{\refl}{\operatorname{refl}}
+\newcommand{\Frefl}{\operatorname{Frefl}}
+\newcommand{\U}{\mathcal{U}}
+\newcommand{\type}{\operatorname{ type}}
+\newcommand{\case}{\operatorname{case}}
+\newcommand{\ctx}{\operatorname{ctx}}
+\newcommand{\rec}{\operatorname{rec}}
+\newcommand{\app}{\operatorname{app}}
+\renewcommand{\split}{\operatorname{split}}
+\newcommand{\pair}{\operatorname{pair}}
+\newcommand{\Nat}{\operatorname{Nat}}
+\newcommand{\List}{\operatorname{List}}
+
+
+% Topos and logic -----------------------------------------
+\newcommand{\True}{\operatorname{True}}
+\newcommand{\False}{\operatorname{False}}
+
+\newcommand{\Sub}{\operatorname{Sub}}
+\newcommand{\ClSub}{\operatorname{ClSub}}
+
+\newcommand{\Int}{\operatorname{Int}}
+\newcommand{\Sh}{\operatorname{Sh}}
+\newcommand{\Monic}{\operatorname{Monic}}
+
+
+% Rings-------------------------------------------------------
+\renewcommand{\char}{\textrm{char}}
+\newcommand{\F}{\mathbb{F}}
+\renewcommand{\ev}{\operatorname{ev}}
+
+
+% Symbols-------------------------------------------------------
+\renewcommand{\phi}{\varphi}
+
+
+\title{$0}
+\author{James Leslie - jlesli25@uwo.ca}
+
+\begin{document}
+\maketitle
+
+
+
+
+\bibliography{bibliography}
+\bibliographystyle{alpha}
+
+\end{document}
