@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: Built in
-# key: BUILTIN
-# --
-{-# BUILTIN $0 #-}

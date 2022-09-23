@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: Options
-# key: OPTIONS
-# --
-{-# OPTIONS --without-K --no-import-sorts #-}

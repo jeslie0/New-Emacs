@@ -1,3 +1,0 @@
-#+title: My New Emacs Config
-* Why am I doing this?
-I am getting tired of having one big org file that I use to to tangle my init file. I plan to make a more modular system (akin to Spacemacs or DOOM) which allows for easier customisation.

@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: Proposition block
-# key: proposition
-# --
-#+BEGIN_proposition
-$0
-#+END_proposition

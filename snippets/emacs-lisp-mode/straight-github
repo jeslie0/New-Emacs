@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: straight GitHub recipe
-# key: <sgithub
-# --
-:straight (:host github :repo "$1" :branch "$2" :files ("$3"))

@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: elisp block
-# key: <el
-# --
-#+BEGIN_SRC elisp
-  $0
-#+END_SRC

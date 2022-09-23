@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: which-key
-# key: <which
-# --
-'(:ignore t :which-key "$0")

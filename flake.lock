@@ -1,7 +1,0 @@
-Welcome to the Emacs shell
-
- ~/Documents/NewEmacsConfig   master $ rm flake.nix 
- ~/Documents/NewEmacsConfig   master $ nix flake update james
- ~/Documents/NewEmacsConfig   master $ nix flake init -t james#basic 
-wrote: /home/james/Documents/NewEmacsConfig/flake.nix
- ~/Documents/NewEmacsConfig   master $ 
