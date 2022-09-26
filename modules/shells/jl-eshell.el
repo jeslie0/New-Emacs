@@ -16,6 +16,29 @@
    eshell-hist-ignoredups t
    eshell-scroll-to-bottom-on-input t))
 
+(use-package eshell-git-prompt
+  :defer t)
+
+
+(use-package eshell
+  :commands (eshell)
+  :defer t
+  :hook (eshell-first-time-mode . efs/configure-eshell)
+  :general
+  (jl/SPC-keys
+    "ase" 'eshell)
+  (:keymaps 'eshell-mode-map
+            "C-j" 'eshell-next-matching-input-from-input
+            "C-k" 'eshell-previous-matching-input-from-input)
+  :config
+  (defalias 'eshell/d 'dired)
+
+  (with-eval-after-load 'esh-opt
+    (setq eshell-destroy-buffer-when-process-dies t)
+    (setq eshell-visual-commands '("htop" "zsh" "vim" "nmtui")))
+
+  (eshell-git-prompt-use-theme 'powerline))
+
 (use-package eshell-did-you-mean
   :straight (:host github :repo "xuchunyang/eshell-did-you-mean" :branch "master" :files ("*.el"))
   :after eshell

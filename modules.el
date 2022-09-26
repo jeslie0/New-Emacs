@@ -100,7 +100,7 @@
                      jl-ement
                      jl-eww
                      jl-mu4e
-                     jl-mu4e-alert
+                     ;; jl-mu4e-alert
                      jl-mpv
 
                      ;;;
@@ -116,6 +116,7 @@
                      jl-flymake
 
                      ;;; Auto completions
+                     jl-yasnippet
                      jl-corfu
                      ;; jl-corfu-doc
                      jl-cape
