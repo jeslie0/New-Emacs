@@ -52,14 +52,16 @@ ignored."
 (defun file-name-list-to-string (file-list)
   "Given a FILE-LIST, take each file and concatenate them all together, in order."
   (with-temp-file (format "%s/init.el" (f-dirname (f-dirname (f-this-file))))
-    (insert ";; -*- lexical-binding: t -*- \n")
+    (insert ";; -*- lexical-binding: t -*- \n\n")
+    (insert (format "(setq modules-alist '%s)\n\n" modules-alist))
+    (insert (format "(setq user-modules '%s)\n\n" user-modules))
     (goto-char (point-max))
     (mapc #'(lambda (file)
               (insert-file-contents (expand-file-name file))
               (goto-char (point-max)))
           file-list)
-    (insert (format "(setq modules-alist '%s)" user-modules))
-    ))
+    (insert "\n\n(if (file-exists-p (concat user-emacs-directory \"config.el\"))
+    (load-file (concat user-emacs-directory \"config.el\")))")))
 
 (defun f-filename (path)
   "Return the name of PATH."

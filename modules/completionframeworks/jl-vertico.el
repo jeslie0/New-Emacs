@@ -110,5 +110,8 @@ folder, otherwise delete a character backward"
 (use-package consult-dir
   :after consult
   :general
+  (general-define-key
+   :keymaps 'vertico-map
+   "C-d" 'consult-dir)
   (jl/SPC-keys
     "fd" 'consult-dir))
