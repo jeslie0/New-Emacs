@@ -1,7 +1,13 @@
 (use-package pdf-tools
   :straight nil
   :mode (("\\.pdf\\'" . pdf-view-mode))
-  :general
+  :config
+  (progn
+    (mapcar
+     #'(lambda (filename) (load (concat pdf-tools-directory filename)))
+     (-filter (lambda (filename)
+                (and (f-ext-p filename "elc") (not (equal filename "pdf-tools.elc"))))
+              (cdr (cdr (cdr (directory-files pdf-tools-directory)))))))
   (jl/major-modes
     :keymaps 'pdf-view-mode-map
     :states '(normal visual operator)
@@ -29,6 +35,5 @@
 
     "TAB" #'pdf-outline
     "s" #'pdf-occur)
-  :config
   (setq pdf-view-use-scaling t)
   (pdf-tools-install))
