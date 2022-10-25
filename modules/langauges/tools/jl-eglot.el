@@ -29,8 +29,8 @@
   :custom
   (eglot-confirm-server-initiated-edits nil)
   (eglot-extend-to-xref)
-  (add-to-list completion-category-overrides '((eglot (styles orderless))))
   :config
+  (add-to-list 'completion-category-overrides '(eglot (styles orderless)))
   (general-define-key
    :keymaps 'eglot-mode-map
    :states '(normal operator)

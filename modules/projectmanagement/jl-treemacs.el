@@ -66,7 +66,7 @@
   (treemacs-expand-after-init             t)
   (treemacs-git-command-pipe              "")
   (treemacs-goto-tag-strategy             'refetch-index)
-  (treemacs-indentation                   2)
+  (treemacs-indentation                   1)
   (treemacs-indentation-string            " ")
   (treemacs-is-never-other-window         nil)
   (treemacs-max-git-entries               5000)
@@ -101,7 +101,7 @@
   ;; (treemacs-resize-icons 44)
   :config
   (progn (treemacs-follow-mode t)
-         (treemacs-indent-guide-mode t)
+         ;; (treemacs-indent-guide-mode t)
          (treemacs-git-commit-diff-mode t)
          (treemacs-filewatch-mode t)
          (treemacs-fringe-indicator-mode 'always)
