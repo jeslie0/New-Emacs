@@ -22,6 +22,8 @@ init.el
 .lsp*
 ltximg/
 
+modules.el
+
 network-security.data
 
 org-caldav*

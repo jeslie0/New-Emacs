@@ -76,34 +76,35 @@
 (use-package haskell-mode
   :hook ((haskell-mode . auto-fill-mode))
   :general
-  ;; (:keymaps 'haskell-mode-map
-  ;;           :states 'normal
-  ;;           "o" 'haskell-indentation-newline-and-indent)
+  (:keymaps 'haskell-mode-map
+            :states 'normal
+            "o" 'haskell-evil-open-below
+            "O" 'haskell-evil-open-above)
   :init
   ;; ;; To get evil's "o" and "O" keys to work with indentation as expected, we use these two functions from [[https://github.com/haskell/haskell-mode/issues/1265#issuecomment-252492026][hatashiro]].
-  ;; (defun haskell-evil-open-above ()
-  ;;   (interactive)
-  ;;   (evil-digit-argument-or-evil-beginning-of-line)
-  ;;   (haskell-indentation-newline-and-indent)
-  ;;   (evil-previous-line)
-  ;;   (haskell-indentation-indent-line)
-  ;;   (evil-append-line nil))
+  (defun haskell-evil-open-above ()
+    (interactive)
+    (evil-digit-argument-or-evil-beginning-of-line)
+    (haskell-indentation-newline-and-indent)
+    (evil-previous-line)
+    (haskell-indentation-indent-line)
+    (evil-append-line nil))
 
-  ;; (defun haskell-evil-open-below ()
-  ;;   (interactive)
-  ;;   (evil-append-line nil)
-  ;;   (haskell-indentation-newline-and-indent))
+  (defun haskell-evil-open-below ()
+    (interactive)
+    (evil-append-line nil)
+    (haskell-indentation-newline-and-indent))
 
-  ;; (defun haskell-format-imports ()
-  ;;   "Sort and align import statements from anywhere in the source file."
-  ;;   (interactive)
-  ;;   (save-excursion
-  ;;     (haskell-navigate-imports)
-  ;;     (haskell-mode-format-imports)))
+  (defun haskell-format-imports ()
+    "Sort and align import statements from anywhere in the source file."
+    (interactive)
+    (save-excursion
+      (haskell-navigate-imports)
+      (haskell-mode-format-imports)))
 
-  ;; (defun haskell-process-do-type-on-prev-line ()
-  ;;   (interactive)
-  ;;   (haskell-process-do-type 1))
+  (defun haskell-process-do-type-on-prev-line ()
+    (interactive)
+    (haskell-process-do-type 1))
   (remove-hook 'haskell-mode-hook 'electric-indent-mode)
   :config
   (jl/haskell-keys)
