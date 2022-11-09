@@ -25,17 +25,17 @@
     ;; "p" '(:ignore t :which-key "preview")
     ;; "r" '(:ignore t :which-key "reftex")
 
-    "\\"  'TeX-insert-macro                            ;; C-c C-m
-    "-"   'TeX-recenter-output-buffer                  ;; C-c C-l
-    "%"   'TeX-comment-or-uncomment-paragraph          ;; C-c %
-    ";"   'comment-or-uncomment-region                 ;; C-c ; or C-c :
+    "\\"  'TeX-insert-macro                   ;; C-c C-m
+    "-"   'TeX-recenter-output-buffer         ;; C-c C-l
+    "%"   'TeX-comment-or-uncomment-paragraph ;; C-c %
+    ";"   'comment-or-uncomment-region        ;; C-c ; or C-c :
     ;; TeX-command-run-all runs compile and open the viewer
-    "k"   'TeX-kill-job                                ;; C-c C-k
-    "l"   'TeX-recenter-output-buffer                  ;; C-c C-l
-    "m"   'TeX-insert-macro                            ;; C-c C-m
-    "n"   'TeX-next-error                              ;; C-c `
-    "N"   'TeX-previous-error                          ;; M-g p
-    "v"   'TeX-view                                    ;; C-c C-v
+    "k"   'TeX-kill-job               ;; C-c C-k
+    "l"   'TeX-recenter-output-buffer ;; C-c C-l
+    "m"   'TeX-insert-macro           ;; C-c C-m
+    "n"   'TeX-next-error             ;; C-c `
+    "N"   'TeX-previous-error         ;; M-g p
+    "v"   'TeX-view                   ;; C-c C-v
     ;; TeX-doc is a very slow function
     "hd"  'TeX-doc
     "xb"  'latex/font-bold
@@ -48,9 +48,8 @@
     "xff" 'latex/font-sans-serif
     "xfr" 'latex/font-serif
 
-    "a"   'TeX-command-run-all                         ;; C-c C-a
-    "b"   'latex/build
-
+    "a"   'TeX-command-run-all ;; C-c C-a
+    "c"   'TeX-command-master
     "z=" 'TeX-fold-math
     "zb" 'TeX-fold-buffer
     "zB" 'TeX-fold-clearout-buffer
@@ -63,14 +62,14 @@
     "zR" 'TeX-fold-clearout-region
     "zz" 'TeX-fold-dwim
 
-    "*"   'LaTeX-mark-section      ;; C-c *
-    "."   'LaTeX-mark-environment  ;; C-c .
-    "ii"   'LaTeX-insert-item       ;; C-c C-j
-    "s"   'LaTeX-section           ;; C-c C-s
-    "fe"  'LaTeX-fill-environment  ;; C-c C-q C-e
-    "fp"  'LaTeX-fill-paragraph    ;; C-c C-q C-p
-    "fr"  'LaTeX-fill-region       ;; C-c C-q C-r
-    "fs"  'LaTeX-fill-section      ;; C-c C-q C-s
+    "*"   'LaTeX-mark-section     ;; C-c *
+    "."   'LaTeX-mark-environment ;; C-c .
+    "ii"   'LaTeX-insert-item     ;; C-c C-j
+    "s"   'LaTeX-section          ;; C-c C-s
+    "fe"  'LaTeX-fill-environment ;; C-c C-q C-e
+    "fp"  'LaTeX-fill-paragraph   ;; C-c C-q C-p
+    "fr"  'LaTeX-fill-region      ;; C-c C-q C-r
+    "fs"  'LaTeX-fill-section     ;; C-c C-q C-s
     "pb"  'preview-buffer
     "pc"  'preview-clearout
     "pd"  'preview-document
@@ -108,10 +107,8 @@
 	 (LaTeX-mode . visual-line-mode)
 	 (LaTeX-mode . TeX-fold-mode)
 	 (LaTeX-mode . LaTeX-math-mode)
-	 (LaTeX-mode . TeX-source-correlate-mode)
-	 (LaTeX-mode . TeX-PDF-mode)
-         ;L (LaTeX-mode . (lambda () (variable-pitch-mode nil)))
-         )
+         (LaTeX-mode . TeX-source-correlate-mode)
+	 (LaTeX-mode . TeX-PDF-mode))
   :custom
   (TeX-parse-self t) ;; Enable Parse on load
   (TeX-auto-save t) ;;Enable Parse on save
@@ -130,11 +127,12 @@
      ("tikzcd" ?j "cd:" "~\\ref{%s}" t  ("tikzcd" "cd.") -3)
      ("definition" ?d "def:" "~\\ref{%s}" t   ("definition" "de.") -3))
    )
-  (TeX-view-program-selection '((output-pdf "Zathura")))
-  (TeX-source-correlate-start-server t) ;; not sure if last line is neccessary
+  (TeX-view-program-selection '((output-pdf "PDF Tools")))
+  (TeX-source-correlate-start-server t)
   :init
   (jl/auctex-keys)
   :config
+  (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
   ;; Folding environments
   (defun latex-fold-env-all ()
     (interactive)
@@ -167,11 +165,6 @@
     (TeX-command latex-build-command 'TeX-master-file -1)))
 ;; (setq build-proc (TeX-command latex-build-command 'TeX-master-
 
-(defun latex/auto-fill-mode ()
-  "Toggle auto-fill-mode using the custom auto-fill function."
-  (interactive)
-  (auto-fill-mode)
-  (setq auto-fill-function 'latex//autofill))
 
 ;; Rebindings for TeX-font
 (defun latex/font-bold () (interactive) (TeX-font nil ?\C-b))
@@ -189,10 +182,9 @@
 (defun latex/font-upright () (interactive) (TeX-font nil ?\C-u))
 
 (use-package auctex-latexmk
- :straight (:host github :repo "wang1zhen/auctex-latexmk" :branch "master" :files ("*.el"))
-  :defer t
-  :config
-  (auctex-latexmk-setup))
+ :straight (:host github :repo "emacsmirror/auctex-latexmk" :branch "master" :files ("auctex-latexmk.el"))
+ :config
+ (auctex-latexmk-setup))
 
 
 (use-package lsp-latex
