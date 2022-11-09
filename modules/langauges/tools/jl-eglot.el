@@ -35,7 +35,14 @@
    :keymaps 'eglot-mode-map
    :states '(normal operator)
    "K" 'eldoc-box-eglot-help-at-point)
-  (add-to-list 'eglot-server-programs '((tex-mode context-mode texinfo-mode bibtex-mode) "texlab"))
   (add-to-list 'eglot-server-programs '(csharp-mode . ("OmniSharp" "-lsp")))
   (add-to-list 'eglot-server-programs '(csharp-tree-sitter-mode . ("OmniSharp" "-lsp")))
   (add-to-list 'eglot-server-programs '(python-mode . ("python-language-server" ""))))
+
+(use-package consult-eglot
+  :after (consult eglot)
+  :general
+  (jl/major-modes
+    :keymaps 'eglot-mode-map
+    :states '(normal visual operator)
+    "=s" #'consult-eglot-symbols))
