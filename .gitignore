@@ -41,10 +41,9 @@ recentf
 
 spell-fu*
 
-straight/build/
-straight/modified/
-straight/repos/
-straight/build-cache.el
+straight/build*
+straight/repos*
+straight/versions/*
 
 
 tmp
