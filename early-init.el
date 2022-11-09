@@ -47,7 +47,6 @@
 ;; Set the variable pitch face
 (set-face-attribute 'variable-pitch nil :family jl/text-font :height 100)
 
-(set-face-attribute 'cursor nil :background "DarkGoldenrod2")
 (set-face-attribute 'mode-line-active nil :inherit nil)
 
 (setq frame-inhibit-implied-resize t)

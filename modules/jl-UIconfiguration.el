@@ -8,16 +8,15 @@
 
 ;;; Themes
 (use-package doom-themes
-  :defer t
-  :hook (server-after-make-frame . (lambda () (load-theme
-					       'doom-palenight t)))
-  :init
-  (load-theme 'doom-palenight t))
+  :defer t)
 
 (use-package nord-theme
   :defer t)
 
 (use-package dracula-theme
+  :defer t)
+
+(use-package vscode-dark-plus-theme
   :defer t)
 
 ;;; All the icons
