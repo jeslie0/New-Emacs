@@ -47,6 +47,7 @@ ignored."
    (:else (buffer-file-name))))
 
 (load-file (expand-file-name "../modules.el"))
+(message "Loaded.")
 
 
 (defun file-name-list-to-string (file-list)
@@ -61,7 +62,10 @@ ignored."
               (goto-char (point-max)))
           file-list)
     (insert "\n\n(if (file-exists-p (concat user-emacs-directory \"config.el\"))
-    (load-file (concat user-emacs-directory \"config.el\")))")))
+    (load-file (concat user-emacs-directory \"config.el\")))\n\n")
+    (insert "(defun compile-modules () \"Build the init.el file from the modules.el file.\" (interactive) (cd (concat user-emacs-directory \"bin/\")) (shell-command \"./compileModules\"))\n\n")))
+
+
 
 (defun f-filename (path)
   "Return the name of PATH."
