@@ -1,5 +1,5 @@
 (use-package diff-hl
-  :after vc-mode
+  :defer t
   :general
   (jl/SPC-keys
     "gg"  '(:ignore t :which-key "gutter")

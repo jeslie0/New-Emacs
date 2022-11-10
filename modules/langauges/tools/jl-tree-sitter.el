@@ -18,4 +18,6 @@
   :after tree-sitter)
 
 (use-package ts-fold
+  :defer t
+  :after tree-sitter
   :straight (ts-fold :type git :host github :repo "emacs-tree-sitter/ts-fold"))
