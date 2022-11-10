@@ -16,14 +16,6 @@
     :keymaps 'LaTeX-mode-map
     :states '(normal visual motion)
     :major-modes t
-    ;; "xf" '(:ignore t :which-key "fonts")
-    ;; "f" '(:ignore t :which-key "fill")
-    ;; "h" '(:ignore t :which-key "help")
-    ;; "x" '(:ignore t :which-key "text/fonts")
-    ;; "z" '(:ignore t :which-key "fold")
-    ;; "i" '(:ignore t :which-key "insert")
-    ;; "p" '(:ignore t :which-key "preview")
-    ;; "r" '(:ignore t :which-key "reftex")
 
     "\\"  'TeX-insert-macro                   ;; C-c C-m
     "-"   'TeX-recenter-output-buffer         ;; C-c C-l
@@ -157,14 +149,6 @@
      '("align*"))))
 
   ;;; Functions
-(defun latex/build ()
-  (interactive)
-  (progn
-    (let ((TeX-save-query nil))
-      (TeX-save-document (TeX-master-file)))
-    (TeX-command latex-build-command 'TeX-master-file -1)))
-;; (setq build-proc (TeX-command latex-build-command 'TeX-master-
-
 
 ;; Rebindings for TeX-font
 (defun latex/font-bold () (interactive) (TeX-font nil ?\C-b))
@@ -182,9 +166,10 @@
 (defun latex/font-upright () (interactive) (TeX-font nil ?\C-u))
 
 (use-package auctex-latexmk
- :straight (:host github :repo "emacsmirror/auctex-latexmk" :branch "master" :files ("auctex-latexmk.el"))
- :config
- (auctex-latexmk-setup))
+  :after tex
+  :straight (:host github :repo "emacsmirror/auctex-latexmk" :branch "master" :files ("auctex-latexmk.el"))
+  :config
+  (auctex-latexmk-setup))
 
 
 (use-package lsp-latex
