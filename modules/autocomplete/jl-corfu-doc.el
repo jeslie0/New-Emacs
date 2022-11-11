@@ -1,10 +1,13 @@
 (use-package corfu-doc
-  ;; NOTE 2022-02-05: At the time of writing, `corfu-doc' is not yet on melpa
-  :straight (corfu-doc :type git :host github :repo "galeo/corfu-doc")
   :after corfu
   :hook (corfu-mode . corfu-doc-mode)
+  :general (:keymaps 'corfu-map
+                     "M-n" #'corfu-doc-scroll-up
+                     "M-p" #'corfu-doc-scroll-down
+                     "M-h" #'corfu-doc-toggle)
   :custom
-  (corfu-doc-delay 1.5)
+  (corfu-doc-auto nil)
+  (corfu-doc-delay 0.1)
   (corfu-doc-max-width 70)
   (corfu-doc-max-height 20)
 
