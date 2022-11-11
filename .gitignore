@@ -44,7 +44,7 @@ spell-fu*
 straight/build*
 straight/repos*
 straight/versions/*
-
+!straight/versions/.gitignore
 
 tmp
 tramp
