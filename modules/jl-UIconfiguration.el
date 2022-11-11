@@ -197,3 +197,10 @@
   :straight nil
   :init
   (pixel-scroll-precision-mode))
+
+;;; Line numbers
+(use-package display-line-numbers
+  :defer t
+  :hook ((prog-mode text-mode) . display-line-numbers-mode)
+  :config
+  (global-display-line-numbers-mode))
