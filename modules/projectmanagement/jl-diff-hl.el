@@ -16,7 +16,10 @@
   (dired-mode . diff-hl-dired-mode-unless-remote)
   (magit-pre-refresh . diff-hl-magit-pre-refresh)
   (magit-post-refresh . diff-hl-magit-post-refresh)
-
+  :init
+  (unless (display-graphic-p)
+    ((add-hook 'prog-mode-hook #'diff-hl-margin-mode)
+     (add-hook 'text-mode-hook #'diff-hl-margin-mode)))
   :custom
   (diff-hl-fringe-face-function '(lambda (type _pos)
                                    (intern (format "diff-hl-%s" type))))
@@ -29,18 +32,17 @@
      (unknown . "?")
      (ignored . "i")))
   :config
-  (define-fringe-bitmap 'diff-hl-insert
-    [#b00000011] nil nil '(center repeated))
-  (define-fringe-bitmap 'diff-hl-change
-    [#b00000011] nil nil '(center repeated))
-  (define-fringe-bitmap 'diff-hl-delete
-    [#b00000011] nil nil '(center repeated))
-
-  ;; Only needed when using a DOOM theme
-  (doom-themes-set-faces nil
-    '(diff-hl-insert :foreground vc-added :background bg)
-    '(diff-hl-delete :foreground vc-deleted :background bg)
-    '(diff-hl-change :foreground vc-modified :background bg)
-    '(diff-hl-margin-insert :foreground vc-added :background bg)
-    '(diff-hl-margin-delete :foreground vc-deleted :background bg)
-    '(diff-hl-margin-change :foreground vc-modified :background bg)))
+  (require 'vc)
+  (defun update-diff-hl-fringes ()
+    "Updates the diff-hl fringe faces to match the theme."
+    (set-face-attribute 'diff-hl-insert nil :background (face-attribute 'fringe :background))
+    (set-face-attribute 'diff-hl-delete nil :background (face-attribute 'fringe :background))
+    (set-face-attribute 'diff-hl-change nil :background (face-attribute 'fringe :background))
+    (define-fringe-bitmap 'diff-hl-insert
+      [#b00000011] nil nil '(center repeated))
+    (define-fringe-bitmap 'diff-hl-change
+      [#b00000011] nil nil '(center repeated))
+    (define-fringe-bitmap 'diff-hl-delete
+      [#b00000011] nil nil '(center repeated)))
+  (update-diff-hl-fringes)
+  (add-hook 'after-load-theme-hook 'update-diff-hl-fringes))

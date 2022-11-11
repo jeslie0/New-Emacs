@@ -58,7 +58,11 @@ folder, otherwise delete a character backward"
     :keymaps 'org-mode-map
     :states '(normal visual operator)
     :major-modes t
-    "C-s" 'consult-org-heading))
+    "C-s" 'consult-org-heading)
+  :config
+  (defadvice consult-theme (after run-after-load-theme-hook activate)
+    "Run `after-load-theme-hook'."
+    (run-hooks 'after-load-theme-hook)))
 
 ;;; Orderless
 (use-package orderless
