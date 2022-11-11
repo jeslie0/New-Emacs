@@ -572,17 +572,15 @@
 
 ;;; Evil Org
 (use-package evil-org
-  :straight (:host github :repo "Somelauw/evil-org-mode" :branch "master" :files ("evil-org.el"))
+  :defer t
   :after org
-  :hook (org-mode . evil-org-mode)
-  ;; :config
-  ;; (use-package evil-org-agenda
-  ;;   :defer t
-  ;;   :hook (org-agenda-mode . (lambda () (evil-org-agenda-set-keys)))
-  ;;   :straight (:host github :repo "Somelauw/evil-org-mode" :branch "master" :files ("evil-org-agenda.el"))
-  ;;   :config
-  ;;   (evil-org-agenda-set-keys))
-  )
+  :hook ((org-mode . evil-org-mode)
+         (evil-org-mode . evil-org-set-key-theme))
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
+
+
 ;;; Org CalDav
 (defun jl/org-caldav-keybindings ()
   (jl/C-c-keys
