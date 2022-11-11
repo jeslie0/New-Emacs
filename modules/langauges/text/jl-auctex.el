@@ -100,7 +100,8 @@
 	 (LaTeX-mode . TeX-fold-mode)
 	 (LaTeX-mode . LaTeX-math-mode)
          (LaTeX-mode . TeX-source-correlate-mode)
-	 (LaTeX-mode . TeX-PDF-mode))
+	 (LaTeX-mode . TeX-PDF-mode)
+         (LaTeX-mode . display-line-numbers-mode))
   :custom
   (TeX-parse-self t) ;; Enable Parse on load
   (TeX-auto-save t) ;;Enable Parse on save

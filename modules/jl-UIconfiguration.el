@@ -21,10 +21,6 @@
 
 ;;; All the icons
 (use-package all-the-icons
-  :straight (all-the-icons :type git :host github :repo "domtronn/all-the-icons.el"
-			   :fork (:host github
-					:repo "jeslie0/all-the-icons.el")
-			   :files (:defaults "data" "all-the-icons.el"))
   :config
   (progn
     (setf (alist-get "v" all-the-icons-extension-icon-alist nil nil #'equal) '(all-the-icons-fileicon "coq" :height 1.0 :v-adjust -0.2 :face all-the-icons-lred))
@@ -201,6 +197,4 @@
 ;;; Line numbers
 (use-package display-line-numbers
   :defer t
-  :hook ((prog-mode text-mode) . display-line-numbers-mode)
-  :config
-  (global-display-line-numbers-mode))
+  :hook ((prog-mode) . display-line-numbers-mode))

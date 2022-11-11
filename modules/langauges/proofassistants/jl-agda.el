@@ -1,4 +1,10 @@
+(eval-and-compile
+  (defun agda2-load-path ()
+    (shell-command-to-string "agda-mode locate")))
+
 (use-package agda2-mode
+  :straight nil
+  :defer t
   :general
   (jl/major-modes
     :states '(normal visual operator)
@@ -46,6 +52,10 @@
     "x;"  'agda2-comment-dwim-rest-of-buffer
 
     "z"   'agda2-search-about-toplevel)
+  :init
+  (progn
+    (load-file (let ((coding-system-for-read 'utf-8))
+                 (shell-command-to-string "agda-mode locate"))))
   :config
   (defhydra jl/agda-goal-navigation (:hint nil)
     "
