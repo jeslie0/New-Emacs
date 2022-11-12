@@ -10,44 +10,6 @@
 
 ;;; Code:
 
-(defun f-expand (path &optional dir)
-  "Expand PATH relative to DIR (or `default-directory').
-PATH and DIR can be either a directory names or directory file
-names.  Return a directory name if PATH is a directory name, and
-a directory file name otherwise.  File name handlers are
-ignored."
-  (let (file-name-handler-alist)
-    (expand-file-name path dir)))
-
-(defun f-same-p (path-a path-b)
-  "Return t if PATH-A and PATH-B are references to same file."
-  (equal
-   (file-truename (directory-file-name (f-expand path-a)))
-   (file-truename (directory-file-name (f-expand path-b)))))
-
-(defun f-relative-p (path)
-  "Return t if PATH is relative, false otherwise."
-  (not (file-name-absolute-p path)))
-
-(defun f-dirname (path)
-  "Return the parent directory to PATH."
-  (let ((parent (file-name-directory
-                 (directory-file-name (f-expand path default-directory)))))
-    (unless (f-same-p path parent)
-      (if (f-relative-p path)
-          (file-relative-name parent)
-        (directory-file-name parent)))))
-
-(defun f-this-file ()
-  "Return path to this file."
-  (cond
-   (load-in-progress load-file-name)
-   ((and (boundp 'byte-compile-current-file) byte-compile-current-file)
-    byte-compile-current-file)
-   (:else (buffer-file-name))))
-
-
-
 (defun file-name-list-to-string (file-list)
   "Given a FILE-LIST, take each file and concatenate them all together, in order."
   (let ((lexical-binding-string ";; -*- lexical-binding: t -*- \n\n")
@@ -68,7 +30,7 @@ ignored."
       (insert user-config-string))))
 
 
-(defun f-filename (path)
+(defun filename (path)
   "Return the name of PATH."
   (file-name-nondirectory (directory-file-name path)))
 
@@ -78,7 +40,7 @@ ignored."
 (setq modules-alist
   (let ((module-paths (directory-files-recursively (concat user-emacs-directory "modules/") "")))
     (mapcar
-     (lambda (path) `(,(intern (file-name-sans-extension (f-filename path))) . ,(format "%s" path)))
+     (lambda (path) `(,(intern (file-name-sans-extension (filename path))) . ,(format "%s" path)))
      module-paths)))
 
 
