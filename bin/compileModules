@@ -46,37 +46,45 @@ ignored."
     byte-compile-current-file)
    (:else (buffer-file-name))))
 
-(load-file (expand-file-name "../modules.el"))
-(message "Loaded.")
 
 
 (defun file-name-list-to-string (file-list)
   "Given a FILE-LIST, take each file and concatenate them all together, in order."
-  (with-temp-file (format "%s/init.el" (f-dirname (f-dirname (f-this-file))))
-    (insert ";; -*- lexical-binding: t -*- \n\n")
-    (insert (format "(setq modules-alist '%s)\n\n" modules-alist))
-    (insert (format "(setq user-modules '%s)\n\n" user-modules))
-    (goto-char (point-max))
-    (mapc #'(lambda (file)
-              (insert-file-contents (expand-file-name file))
-              (goto-char (point-max)))
-          file-list)
-    (insert "\n\n(if (file-exists-p (concat user-emacs-directory \"config.el\"))
-    (load-file (concat user-emacs-directory \"config.el\")))\n\n")
-    (insert "(defun compile-modules () \"Build the init.el file from the modules.el file.\" (interactive) (cd (concat user-emacs-directory \"bin/\")) (shell-command \"./compileModules\"))\n\n")))
-
+  (let ((lexical-binding-string ";; -*- lexical-binding: t -*- \n\n")
+        (modules-alist-string (format "(defvar modules-alist '%s \"Alist of module names and their paths\")\n\n" modules-alist) )
+        (user-modules-string (format "(defvar user-modules '%s \"%s\")\n\n" user-modules (format "List of user modules, defined in %smodules.el" user-emacs-directory)))
+        (user-config-string "\n\n(if (file-exists-p (concat user-emacs-directory \"config.el\"))\n(load-file (concat user-emacs-directory \"config.el\")))\n\n")
+        (compile-modules-string "(defun compile-modules () \"Build the init.el file from the modules.el file.\" (interactive) (shell-command (concat user-emacs-directory \"bin/compileModules\")))\n\n"))
+    (with-temp-file (concat user-emacs-directory "init.el")
+      (insert lexical-binding-string)
+      (insert modules-alist-string)
+      (insert user-modules-string)
+      (insert compile-modules-string)
+      (goto-char (point-max))
+      (mapc #'(lambda (file)
+                (insert-file-contents (expand-file-name file))
+                (goto-char (point-max)))
+            file-list)
+      (insert user-config-string))))
 
 
 (defun f-filename (path)
   "Return the name of PATH."
   (file-name-nondirectory (directory-file-name path)))
 
-(setq modules-alist
-  ;; "Generates an alist of module names and their paths."
-  (let ((module-paths (directory-files-recursively (format "%s/modules/" (f-dirname (f-dirname (f-this-file)))) "")) )
-    (mapcar (lambda (path) `(,(intern (file-name-sans-extension (f-filename path))) . ,path)) module-paths)))
+;;; Script:
 
+
+(setq modules-alist
+  (let ((module-paths (directory-files-recursively (concat user-emacs-directory "modules/") "")))
+    (mapcar
+     (lambda (path) `(,(intern (file-name-sans-extension (f-filename path))) . ,(format "%s" path)))
+     module-paths)))
+
+
+(load-file (concat user-emacs-directory "modules.el"))
 (file-name-list-to-string (mapcar (lambda (key) (alist-get key modules-alist)) user-modules))
+(message (format "Generated %sinit.el" user-emacs-directory))
 
 
 ;; Local Variables:
