@@ -581,24 +581,6 @@
   (evil-org-agenda-set-keys))
 
 
-;;; Org CalDav
-(defun jl/org-caldav-keybindings ()
-  (jl/C-c-keys
-   :keymaps 'org-agenda-mode-map
-   "S" 'org-caldav-sync))
-
-(use-package org-caldav
-  :custom
-  (org-caldav-url "https://posteo.de:8443/calendars/jamesleslie")
-  (org-caldav-calendar-id "default")
-  (org-caldav-inbox "~/Documents/Calendar/Agenda.org")
-  (org-caldav-files '("~/Documents/Calendar/Appointments.org"))
-  (org-icalendar-timezone "Europe/London")
-  (org-caldav-delete-org-entries 'always)
-  (org-caldav-delete-calendar-entries 'never)
-  :init
-  (jl/org-caldav-keybindings))
-
 ;;; Org Present
 (use-package org-present
   :defer t
