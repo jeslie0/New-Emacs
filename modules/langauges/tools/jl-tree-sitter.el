@@ -1,9 +1,8 @@
 (use-package tree-sitter
   :defer t
-  ;; :hook ((() . tree-sitter-mode)
-  ;;        (() . tree-sitter-hl-mode))
   :config
-  (add-to-list 'tree-sitter-major-mode-language-alist '(haskell-mode . haskell)))
+  (add-to-list 'tree-sitter-major-mode-language-alist '(haskell-mode . haskell))
+  (add-to-list 'tree-sitter-major-mode-language-alist '(agda2-mode . agda)))
 
 (use-package tree-sitter-langs
   :defer t

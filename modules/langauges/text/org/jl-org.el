@@ -468,10 +468,10 @@
   (org-roam-node-display-template (concat "${title:*} " (propertize "${tags}" 'face 'org-tag)))
   :init
   (jl/org-roam-global-keys)
-  :config
-  (add-to-list 'org-agenda-files "~/Documents/Roam/daily")
   (jl/org-roam-daily-templates)
   (jl/org-roam-templates)
+  :config
+  (add-to-list 'org-agenda-files "~/Documents/Roam/daily")
   (org-roam-db-autosync-mode)
   (jl/org-roam-key-bindings))
 

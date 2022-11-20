@@ -1,7 +1,3 @@
-(eval-and-compile
-  (defun agda2-load-path ()
-    (shell-command-to-string "agda-mode locate")))
-
 (use-package agda2-mode
   :straight nil
   :defer t
@@ -57,6 +53,7 @@
     (load-file (let ((coding-system-for-read 'utf-8))
                  (shell-command-to-string "agda-mode locate"))))
   :config
+  (set-input-method "Agda")
   (defhydra jl/agda-goal-navigation (:hint nil)
     "
 ^Next Goal^    ^Previous Goal
