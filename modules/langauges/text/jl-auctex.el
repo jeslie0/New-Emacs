@@ -101,29 +101,43 @@
 	 (LaTeX-mode . LaTeX-math-mode)
          (LaTeX-mode . TeX-source-correlate-mode)
 	 (LaTeX-mode . TeX-PDF-mode)
-         (LaTeX-mode . display-line-numbers-mode))
-  :custom
-  (TeX-parse-self t) ;; Enable Parse on load
-  (TeX-auto-save t) ;;Enable Parse on save
-  (TeX-engine 'luatex)
-  (font-latex-math-environments (quote ("display" "displaymath" "equation" "eqnarray" "gather" "math" "multline" "align" "alignat" "xalignat" "xxalignat" "flalign" "tikzcd")))
-  (reftex-plug-into-auctex t)
-  (reftex-default-bibliography '("~/texmf/bibtex/bib/bibliography.bib"))
-  (reftex-label-alist
-   '(("theorem" ?h "thm:" "~\\ref{%s}" t   ("theorem" "th.") -3)
-     ("proof"   ?g "pf:"  "~\\ref{%s}" t   ("proof" "pf.") -3)
-     ("lemma"   ?l "lem:" "~\\ref{%s}" nil ("lemma"   "le.") -2)
-     ("proposition" ?p "prp:" "~\\ref{%s}" t   ("proposition" "pr.") -3)
-     ("corollary" ?c "cor:" "~\\ref{%s}" t   ("corollary" "co.") -3)
-     ("example" ?a "ex:" "~\\ref{%s}" t   ("example" "ex.") -3)
-     ("tcolorbox" ?b  "tcb:" "~\\ref{%s}" t   ("tcolorbox" "cb.") -3)
-     ("tikzcd" ?j "cd:" "~\\ref{%s}" t  ("tikzcd" "cd.") -3)
-     ("definition" ?d "def:" "~\\ref{%s}" t   ("definition" "de.") -3))
-   )
-  (TeX-view-program-selection '((output-pdf "PDF Tools")))
-  (TeX-source-correlate-start-server t)
+         (LaTeX-mode . display-line-numbers-mode)
+         (LaTeX-mode . smartparens-mode)
+         (LaTeX-mode . (lambda () (LaTeX-add-environments
+                                   '("theorem")
+                                   '("proof")
+                                   '("lemma")
+                                   '("proposition")
+                                   '("corollary")
+                                   '("example")
+                                   '("tcolorbox")
+                                   '("tikzcd")
+                                   '("definition")
+                                   '("align*")))))
   :init
   (jl/auctex-keys)
+  (setq TeX-parse-self t     ;; Enable Parse on load
+        TeX-auto-save t      ;; Enable Parse on save
+        TeX-engine 'luatex   ;; Default to compiling with luqlatex
+        TeX-electric-sub-and-superscript t  ;; Insert braces after ^ or _
+        TeX-electric-math '("\\(" . "\\)")  ;; Use \( \) as the dollar
+        LaTeX-electric-left-right-brace t   ;; Close brackets sensibly
+        TeX-view-program-selection '((output-pdf "PDF Tools"))
+        TeX-source-correlate-start-server t)
+
+  (setq texmathp-tex-commands '(("tikzcd" 'env-on))) ;; Custom math envs
+  (setq reftex-plug-into-auctex t
+        reftex-default-bibliography '("~/texmf/bibtex/bib/bibliography.bib")
+        reftex-label-alist '(("theorem" ?h "thm:" "~\\ref{%s}" t   ("theorem" "th.") -3)
+                             ("proof"   ?g "pf:"  "~\\ref{%s}" t   ("proof" "pf.") -3)
+                             ("lemma"   ?l "lem:" "~\\ref{%s}" nil ("lemma"   "le.") -2)
+                             ("proposition" ?p "prp:" "~\\ref{%s}" t   ("proposition" "pr.") -3)
+                             ("corollary" ?c "cor:" "~\\ref{%s}" t   ("corollary" "co.") -3)
+                             ("example" ?a "ex:" "~\\ref{%s}" t   ("example" "ex.") -3)
+                             ("tcolorbox" ?b  "tcb:" "~\\ref{%s}" t   ("tcolorbox" "cb.") -3)
+                             ("tikzcd" ?j "cd:" "~\\ref{%s}" t  ("tikzcd" "cd.") -3)
+                             ("definition" ?d "def:" "~\\ref{%s}" t   ("definition" "de.") -3)))
+
   :config
   (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
   ;; Folding environments
@@ -133,21 +147,7 @@
       (save-excursion
 	(goto-char (point-min))
 	(while (search-forward (format "begin{%s}" env) nil t)
-	  (TeX-fold-env)))))
-
-  ;;(add-hook 'LaTeX-mode-hook
-  (lambda ()
-    (LaTeX-add-environments
-     '("theorem")
-     '("proof")
-     '("lemma")
-     '("proposition")
-     '("corollary")
-     '("example")
-     '("tcolorbox")
-     '("tikzcd")
-     '("definition")
-     '("align*"))))
+	  (TeX-fold-env))))))
 
   ;;; Functions
 
