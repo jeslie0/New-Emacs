@@ -20,6 +20,7 @@
 
     "rn" 'elm-preview-buffer
     "rm" 'elm-preview-main
+    "rr" 'elm-reactor
 
     "pd" 'elm-documentation-lookup
     "pi" 'elm-import
