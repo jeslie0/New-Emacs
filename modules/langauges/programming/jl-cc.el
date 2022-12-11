@@ -2,6 +2,13 @@
   :hook ((c-mode-common . electric-pair-local-mode)
          (c-mode-common . electric-indent-mode)))
 
+(when (treesit-available-p)
+  (use-package c-ts-mode
+    :mode (("\\.c\\'"   . c-ts-mode)
+           ("\\.h\\'"   . c++-ts-mode)
+           ("\\.C\\'"   . c++-ts-mode)
+           ("\\.cpp\\'" . c++-ts-mode))))
+
 (use-package clang-format
   :defer t
   :config

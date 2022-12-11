@@ -37,7 +37,8 @@
    "K" 'eldoc-box-eglot-help-at-point)
   (add-to-list 'eglot-server-programs '(csharp-mode . ("OmniSharp" "-lsp")))
   (add-to-list 'eglot-server-programs '(csharp-tree-sitter-mode . ("OmniSharp" "-lsp")))
-  (add-to-list 'eglot-server-programs '(python-mode . ("python-language-server" ""))))
+  (add-to-list 'eglot-server-programs '(python-mode . ("python-language-server" "")))
+  (add-to-list 'eglot-server-programs `((c-ts-mode c++-ts-mode) . ,(eglot-alternatives '("clangd" "ccls")))))
 
 (use-package consult-eglot
   :after (consult eglot)
