@@ -4,28 +4,27 @@
                                 (make-local-variable 'completion-at-point-functions)
                                 (setq-local completion-at-point-functions (list (cape-super-capf #'eglot-completion-at-point #'cape-dabbrev)))))
   :general
-  (jl/major-modes
+  (jl/lsp-keys
     :keymaps 'eglot-mode-map
     :states '(normal visual operator)
-    "="   '(:ignore t :which-key "eglot")
-    "=S"  '(:ignore t :which-key "server")
-    "=B"  '(:ignore t :which-key "buffers")
+    "S"  '(:ignore t :which-key "server")
+    "B"  '(:ignore t :which-key "buffers")
 
-    "=Se" 'eglot
-    "=Sr" 'eglot-reconnect
-    "=Ss" 'eglot-shutdown
-    "=SS" 'eglot-shutdown-all
-    "=Sc" 'eglot-signal-didChangeConfiguration
+    "Se" 'eglot
+    "Sr" 'eglot-reconnect
+    "Ss" 'eglot-shutdown
+    "SS" 'eglot-shutdown-all
+    "Sc" 'eglot-signal-didChangeConfiguration
 
-    "=r"  'eglot-rename
-    "=f"  'eglot-format
-    "=a"  'eglot-code-actions
-    "=D"  'eldoc
-    "=g"  'xref-find-definitions
+    "r"  'eglot-rename
+    "f"  'eglot-format
+    "a"  'eglot-code-actions
+    "D"  'eldoc
+    "g"  'xref-find-definitions
 
 
-    "=Be" 'eglot-events-buffer
-    "=Bs" 'eglot-stderr-buffer)
+    "Be" 'eglot-events-buffer
+    "Bs" 'eglot-stderr-buffer)
   :custom
   (eglot-confirm-server-initiated-edits nil)
   (eglot-extend-to-xref)

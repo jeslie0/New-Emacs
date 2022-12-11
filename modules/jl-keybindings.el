@@ -45,6 +45,7 @@
          (t
           (rename-file filename new-name t)
           (set-visited-file-name new-name t t)))))))
+
 ;;; general.el
 (use-package general
   :custom
@@ -52,8 +53,8 @@
   :config
   (general-auto-unbind-keys)
   (general-create-definer jl/SPC-keys :states '(normal visual motion) :keymaps 'override :prefix "SPC")
-
   (general-create-definer jl/major-modes :states '(normal visual motion) :prefix ",")
+  (general-create-definer jl/lsp-keys :states '(normal visual motion) :prefix ".")
 
   (general-create-definer jl/C-c-keys :states '(normal visual insert emacs operator motion) :prefix "C-c")
   (jl/SPC-keys

@@ -1,7 +1,7 @@
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :general
-  (jl/major-modes
+  (jl/lsp-keys
     :keymaps 'lsp-mode-map
     :states '(normal visual motion)
     "=" '(:ignore t :which-key "format")
