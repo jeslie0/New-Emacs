@@ -10,3 +10,5 @@ I will probably change the name of this repository, when I come up a better name
 I use [[https://github.com/jwiegley/use-package][use-package]] for configuration and [[https://github.com/radian-software/straight.el][straight.el]] as a package manager.
 ** Keybindings
 I use [[https://github.com/noctuid/general.el][general.el]] for most of the keybindings.
+** Tree sitter
+I use Tree Sitter for syntax highlighting, wherever possible. This will slowly transition to the builtin treesit library, but until that becomes more adopted, I use the external [[https://emacs-tree-sitter.github.io/][tree-sitter]] library.
