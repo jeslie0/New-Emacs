@@ -1,5 +1,7 @@
 (use-package csharp-mode
+  :straight nil
   :defer t
   :config
   (setq lsp-csharp-server-path (executable-find "OmniSharp"))
-  (add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-tree-sitter-mode)))
+  :init
+  (add-to-list 'auto-mode-alist `("\\.cs\\'" . ,(if (treesit-available-p) 'csharp-ts-mode 'csharp-tree-sitter-mode))))

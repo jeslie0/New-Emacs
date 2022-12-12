@@ -1,12 +1,4 @@
 (use-package sh-script
-  ;; :mode ("\\.sh\\'"
-  ;;        "\\.zsh\\'"
-  ;;        "zlogin\\'"
-  ;;        "zlogout\\'"
-  ;;        "zpreztorc\\'"
-  ;;        "zprofile\\'"
-  ;;        "zshenv\\'"
-  ;;        "zshrc\\'")
   :general
   (jl/major-modes
     :keymaps 'sh-mode-map
@@ -26,7 +18,8 @@
     "is" 'sh-select
     "iu" 'sh-until
     "ig" 'sh-while-getopts)
-  )
+  :init
+  (add-to-list 'auto-mode-alist `("\\.sh\\'" . ,(if (treesit-available-p) 'bash-ts-mode 'sh-script-mode))))
 
 (use-package shfmt
   :hook (sh-mode . shfmt-on-save-mode)

@@ -3,6 +3,8 @@
   :custom
   (python-shell-interpreter "ipython")
   (python-shell-interpreter-args "-i --simple-prompt --InteractiveShell.display_page=True")
+  :init
+  (add-to-list 'auto-mode-alist `("\\.py\\'" . ,(if (treesit-available-p) 'python-ts-mode 'python-mode)))
   :config
   (defun lspython ()
     "Updates the lsp-python-ms-executable variable and runs lsp."
