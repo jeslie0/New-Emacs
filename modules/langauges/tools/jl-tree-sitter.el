@@ -5,7 +5,7 @@
   (add-to-list 'tree-sitter-major-mode-language-alist '(haskell-mode . haskell))
   (add-to-list 'tree-sitter-major-mode-language-alist '(agda2-mode . agda)))
 
-(setq jl/builtin-treesit '(c++-mode c-mode csharp-mode css-mode java-mode js-mode json-mode python-mode typescript-mode))
+(setq jl/builtin-treesit '(sh-mode c++-mode c-mode csharp-mode css-mode java-mode js-mode json-mode python-mode typescript-mode))
 
 (use-package tree-sitter-langs
   :defer t

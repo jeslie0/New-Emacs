@@ -21,11 +21,12 @@
   :init
   (add-to-list 'auto-mode-alist `("\\.sh\\'" . ,(if (treesit-available-p) 'bash-ts-mode 'sh-script-mode))))
 
-(use-package shfmt
-  :hook (sh-mode . shfmt-on-save-mode)
-  :general
-  (jl/major-modes
-    :keymaps 'sh-mode-map
-    :states '(normal visual operator)
-    :major-modes t
-    "=" 'shfmt-buffer))
+(when (executable-find "shfmt")
+  (use-package shfmt
+    :hook (sh-mode . shfmt-on-save-mode)
+    :general
+    (jl/major-modes
+      :keymaps 'sh-mode-map
+      :states '(normal visual operator)
+      :major-modes t
+      "=" 'shfmt-buffer)))

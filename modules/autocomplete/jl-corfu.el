@@ -1,4 +1,6 @@
 (use-package corfu
+  :straight (corfu :includes corfu-popupinfo
+                   :files (:defaults "extensions/corfu-popupinfo.el"))
   :general
   (:keymaps 'corfu-map
             "TAB" 'corfu-next
