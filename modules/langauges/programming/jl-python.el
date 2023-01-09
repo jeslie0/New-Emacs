@@ -20,7 +20,7 @@
 (use-package ipython-shell-send
   :general
   (jl/major-modes
-    :keymaps 'python-mode-map
+    :keymaps '(python-mode-map python-ts-mode-map)
     :states '(normal visual operator)
     :major-modes t
     "'" 'run-python
