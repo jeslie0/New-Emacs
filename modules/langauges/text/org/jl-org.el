@@ -624,11 +624,3 @@
   :after org
   :config
   (setq org-latex-src-block-backend 'engraved))
-
-;;; Orglink
-(use-package orglink
-  :init
-  (global-orglink-mode))
-
-;;; Org tree slide mode
-(use-package org-tree-slide)
