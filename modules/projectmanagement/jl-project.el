@@ -10,4 +10,7 @@
   :after (consult)
   :general
   (jl/SPC-keys
-    "pf" 'consult-project-extra-find))
+    "pf" 'consult-project-extra-find)
+  :init
+  (setq project-switch-commands (remove '(project-find-file "Find file") project-switch-commands))
+  (add-to-list 'project-switch-commands '(consult-project-extra-find "Find file")))
