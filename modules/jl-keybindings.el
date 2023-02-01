@@ -65,7 +65,6 @@
     "at" '(:ignore t :which-key "tools")
     "b"  '(:ignore t :which-key "buffers")
 
-    "e"  '(:ignore t :which-key "elisp")
     "f"  '(:which-key "files")
     "fe" '(:which-key "Emacs")
     "h"  '(:ignore t :which-key "help")

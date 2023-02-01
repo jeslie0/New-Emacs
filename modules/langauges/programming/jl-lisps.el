@@ -64,9 +64,10 @@
   :defer t)
 
 (jl/SPC-keys
-  "e"  '(:ignore t :which-key "elisp")
-  "er" 'eval-region
-  "eb" 'eval-buffer)
+  "E"  '(:ignore t :which-key "Elisp")
+  "Ee" 'eval-expression
+  "Er" 'eval-region
+  "Eb" 'eval-buffer)
 
 (add-hook 'emacs-lisp-mode-hook 'electric-pair-local-mode)
 

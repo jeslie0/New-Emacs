@@ -47,7 +47,6 @@ folder, otherwise delete a character backward"
   ("C-s" 'consult-line)
   (jl/SPC-keys
     "SPC" '(execute-extended-command :which-key "M-x")
-    "C-e" 'consult-flymake
     "C-s" 'consult-imenu
     "m"  'consult-minor-mode-menu
     "ff" '(find-file :which-key "find file")
