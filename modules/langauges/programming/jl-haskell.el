@@ -19,7 +19,7 @@
 
     "sb"  'haskell-process-load-file
     "sc"  'haskell-interactive-mode-clear
-    "sS"  'spacemacs/haskell-interactive-bring
+    "sS"  'haskell-interactive-bring
     "ss"  'haskell-interactive-switch
     "st"  'haskell-session-change-target
     "'"   'haskell-interactive-switch
@@ -107,9 +107,7 @@
     (haskell-process-do-type 1))
   (remove-hook 'haskell-mode-hook 'electric-indent-mode)
   :config
-  (jl/haskell-keys)
-  :custom
-  (haskell-process-type 'auto))
+  (jl/haskell-keys))
 
 (use-package hindent
   :after haskell-mode
@@ -135,12 +133,11 @@
     "rb" 'hlint-refactor-refactor-buffer
     "rr" 'hlint-refactor-refactor-at-point))
 
+(use-package cmm-mode
+  :defer t)
+
 (use-package lsp-haskell
   :defer t
-  ;; :hook ((haskell-mode . lsp)
-  ;;        (haskell-mode . lsp-mode)
-  ;;        (haskell-literate-mode . lsp)
-  ;;        (haskell-mode . lsp-mode))
   :custom
   (lsp-haskell-server-path "haskell-language-server-wrapper")
   (lsp-haskell-server-args ()))
