@@ -10,7 +10,7 @@
     "sas" 'add-word-to-dict-session
     "sb" 'flyspell-buffer
     "sr" 'flyspell-region
-    "sd" 'spell-checking/change-dictionary
+    "sD" 'change-dictionary
     "sn" 'flyspell-goto-next-error
     "ss" 'flyspell-correct-at-point)
   (jl/SPC-keys
@@ -24,7 +24,7 @@
     (when spell-checking-enable-by-default
       (add-hook hook 'flyspell-mode)))
 
-  (defun spell-checking/change-dictionary ()
+  (defun change-dictionary ()
     "Change the dictionary. Use the ispell version if
 auto-dictionary is not used, use the adict version otherwise."
     (interactive)
