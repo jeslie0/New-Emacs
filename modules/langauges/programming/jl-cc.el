@@ -1,6 +1,6 @@
 (use-package cc-mode
-  :hook ((c-mode-common . electric-pair-local-mode)
-         (c-mode-common . electric-indent-mode)))
+  :hook (((c-ts-base-mode c-mode-common) . electric-pair-local-mode)
+         ((c-ts-base-mode c-mode-common) . electric-indent-mode)))
 
 (when (treesit-available-p)
   (use-package c-ts-mode
@@ -19,7 +19,7 @@
   :straight (:host github :repo "mp81ss/gendoxy" :branch "master" :files ("*.el"))
   :general
   (jl/major-modes
-    :keymaps '(c-mode-map c++-mode-map c-ts-base-mode-map)
+    :keymaps '(c-mode-map c++-mode-map c-ts-mode-map c++-ts-mode-map)
     :states '(normal visual operator)
     :major-modes t
     "d" '(:ignore t :which-key "doxygen")

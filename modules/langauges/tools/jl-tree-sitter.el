@@ -28,3 +28,8 @@
   :defer t
   :after tree-sitter
   :straight (ts-fold :type git :host github :repo "emacs-tree-sitter/ts-fold"))
+
+(use-package treesit-auto
+  :defer t
+  :config
+  (global-treesit-auto-mode))
