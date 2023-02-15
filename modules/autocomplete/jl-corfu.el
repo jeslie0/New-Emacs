@@ -43,7 +43,7 @@
     (evil-normal-state))
   :config
   (global-corfu-mode)
-
+  (corfu-popupinfo-mode)
   (general-define-key :keymaps 'corfu-map
                       :states 'insert
                       [escape] 'jl/corfu-quit))
