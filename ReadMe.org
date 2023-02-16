@@ -1,7 +1,7 @@
 #+title: New Emacs
 #+author: James Leslie
 
-This is the result of me declaring Emacs bankruptcy, and needing a more modular configuration for use at home and work. To use it, add the desired modules to the modules.el list and run =compileModules=. This generates the init.el from the selected modules. Add user configuration to =config.el=, not =init.el=, otherwise it will be overwritten when compile-modules is run.
+This is the result of me declaring Emacs bankruptcy, and needing a more modular configuration for use at home and work. To use it, add the desired modules to the =modules.el= list and run =compileModules=. This generates the =init.el= from the selected modules. Add user configuration to =config.el=, not =init.el=, otherwise it will be overwritten when compile-modules is run.
 
 I will probably change the name of this repository, when I come up a better name!
 
