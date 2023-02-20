@@ -7,8 +7,4 @@
         flymake-languagetool-language "en-GB")
   :config
   (push "WHITESPACE_RULE" flymake-languagetool-disabled-rules)
-  (push "EN_UNPAIRED_BRACKETS" flymake-languagetool-disabled-rules)
-  (make-process
-   :name "languagetool-server" :noquery t :connection-type 'pipe
-   :buffer " *LanguageTool server*"
-   :command (list "languagetool-http-server" "--port" flymake-languagetool-server-port)))
+  (push "EN_UNPAIRED_BRACKETS" flymake-languagetool-disabled-rules))

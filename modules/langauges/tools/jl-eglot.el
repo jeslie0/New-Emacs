@@ -37,7 +37,8 @@
   (add-to-list 'eglot-server-programs '(csharp-mode . ("OmniSharp" "-lsp")))
   (add-to-list 'eglot-server-programs '(csharp-tree-sitter-mode . ("OmniSharp" "-lsp")))
   (add-to-list 'eglot-server-programs `(python-ts-mode . ,(eglot-alternatives '("pylsp" "pyls" ("pyright-langserver" "--stdio") "jedi-language-server"))))
-  (add-to-list 'eglot-server-programs `((c-ts-mode c++-ts-mode) . ,(eglot-alternatives '("clangd" "ccls")))))
+  (add-to-list 'eglot-server-programs `((c-ts-mode c++-ts-mode) . ,(eglot-alternatives '("clangd" "ccls"))))
+  (add-to-list 'eglot-server-programs '(cmake-ts-mode . ("cmake-language-server"))))
 
 (use-package consult-eglot
   :after (consult eglot)
