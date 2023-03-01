@@ -36,7 +36,8 @@
     (add-to-list 'all-the-icons-extension-icon-alist '("lagda" all-the-icons-fileicon "agda" :height 1.0 :v-adjust -0.2 :face all-the-icons-lblue))
     (add-to-list 'all-the-icons-extension-icon-alist '("purs" all-the-icons-fileicon "purescript" :height 1.0 :v-adjust -0.2 :face all-the-icons-lblue))
     (add-to-list 'all-the-icons-extension-icon-alist '("dhall" all-the-icons-fileicon "nib" :height 1.0 :v-adjust -0.2 :face all-the-icons-purple-alt))
-    (add-to-list 'all-the-icons-extension-icon-alist '("robot" all-the-icons-fileicon "robot" :height 1.0 :v-adjust -0.2 :face all-the-icons-silver))))
+    (add-to-list 'all-the-icons-extension-icon-alist '("robot" all-the-icons-fileicon "robot" :height 1.0 :v-adjust -0.2 :face all-the-icons-silver))
+    (add-to-list 'all-the-icons-extension-icon-alist '("Jenkinsfile" all-the-icons-fileicon "robot" :height 1.0 :v-adjust -0.2 :face all-the-icons-silver))))
 
 (use-package all-the-icons-dired
   :commands (dired)

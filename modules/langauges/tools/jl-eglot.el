@@ -1,4 +1,5 @@
 (use-package eglot
+  :straight (:type built-in)
   :commands (eglot)
   :hook (eglot-managed-mode . (lambda ()
                                 (make-local-variable 'completion-at-point-functions)
