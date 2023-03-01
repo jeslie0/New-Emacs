@@ -54,24 +54,23 @@
     "td" '(:ignore t :which-key "Delete")
     "ti" '(:ignore t :which-key "Insert")
     "tt" '(:ignore t :which-key "Toggle")
-    "C" '(:ignore t :which-key "Clocks")
+    "c" '(:ignore t :which-key "clock")
     "x" '(:ignore t :which-key "Text")
 
     "'" 'org-edit-special
-    "c" 'org-capture
 
     ;; Clock
     ;; These keybindings should match those under the "aoC" prefix (below)
-    "Cc" 'org-clock-cancel
-    "Cd" 'org-clock-display
-    "Ce" 'org-evaluate-time-range
-    "Cg" 'org-clock-goto
-    "Ci" 'org-clock-in
-    "CI" 'org-clock-in-last
-    ;; "Cj" 'spacemacs/org-clock-jump-to-current-clock
-    "Co" 'org-clock-out
-    "CR" 'org-clock-report
-    "Cr" 'org-resolve-clocks
+    "cc" 'org-clock-cancel
+    "cd" 'org-clock-display
+    "ce" 'org-evaluate-time-range
+    "cg" 'org-clock-goto
+    "ci" 'org-clock-in
+    "cI" 'org-clock-in-last
+    ;c "Cj" 'spacemacs/org-clock-jump-to-current-clock
+    "co" 'org-clock-out
+    "cR" 'org-clock-report
+    "cr" 'org-resolve-clocks
 
     "dd" 'org-deadline
     "ds" 'org-schedule
@@ -227,38 +226,37 @@
   (evil-define-minor-mode-key 'visual 'org-capture-mode ",a" 'org-capture-kill))
 
 
-  ;; Add global evil-leader mappings. Used to access org-agenda
-  ;; functionalities – and a few others commands – from any other mode.
+;; Add global evil-leader mappings. Used to access org-agenda
+;; functionalities – and a few others commands – from any other mode.
 (defun jl/org-mode-global-keys ()
   (jl/SPC-keys
-   "ao" '(:ignore t :which-key "org")
-   "aoC" '(:ignore t :which-key "clocks")
-   "aof" '(:ignore t :which-key "feeds")
+    "o" '(:ignore t :which-key "org")
+    "oc" '(:ignore t :which-key "clock")
+    "of" '(:ignore t :which-key "feeds")
 
-   "ao#" 'org-agenda-list-stuck-projects
-   "aoa" 'org-agenda-list
-   "aoo" 'org-agenda
-   "aoc" 'org-capture
-   "aoe" 'org-store-agenda-views
-   "aofi" 'org-feed-goto-inbox
-   "aofu" 'org-feed-update-all
+    "o#" 'org-agenda-list-stuck-projects
+    "oa" 'org-agenda-list
+    "oo" 'org-agenda
+    "oc" 'org-capture
+    "oe" 'org-store-agenda-views
+    "ofi" 'org-feed-goto-inbox
+    "ofu" 'org-feed-update-all
 
-   ;; Clock
-   ;; These keybindings should match those under the "mC" prefix (above)
-   "aoCc" 'org-clock-cancel
-   "aoCg" 'org-clock-goto
-   "aoCi" 'org-clock-in
-   "aoCI" 'org-clock-in-last
-   ;; "aoCj" 'spacemacs/org-clock-jump-to-current-clock
-   "aoCo" 'org-clock-out
-   "aoCr" 'org-resolve-clocks
+    ;;; Clock
+    ;; These keybindings should match those under the "mC" prefix (above)
+    "occ" 'org-clock-cancel
+    "ocg" 'org-clock-goto
+    "oci" 'org-clock-in
+    "ocI" 'org-clock-in-last
+    "oco" 'org-clock-out
+    "ocr" 'org-resolve-clocks
 
-   "aol" 'org-store-link
-   "aom" 'org-tags-view
-   "aos" 'org-search-view
-   "aot" 'org-todo-list
-   ;; SPC C- capture/colors
-   "Cc" 'org-capture))
+    "ol" 'org-store-link
+    "om" 'org-tags-view
+    "os" 'org-search-view
+    "ot" 'org-todo-list
+    ;; SPC C- capture/colors
+    "Cc" 'org-capture))
 
 (defun jl/org-mode-Cc-keys ()
   (jl/C-c-keys
@@ -270,15 +268,15 @@
 ;;; Org Font Setup
 (defun jl/org-font-setup ()
   (dolist (face '((org-document-title . 1.5)
-		  (org-level-1 . 1.2)
-		  (org-level-2 . 1.1)
-		  (org-level-3 . 1.05)
-		  (org-level-4 . 1.0)
-		  (org-level-5 . 1.1)
-		  (org-level-6 . 1.1)
-		  (org-level-7 . 1.1)
-		  (org-level-8 . 1.1))
-		)
+                  (org-level-1 . 1.2)
+                  (org-level-2 . 1.1)
+                  (org-level-3 . 1.05)
+                  (org-level-4 . 1.0)
+                  (org-level-5 . 1.1)
+                  (org-level-6 . 1.1)
+                  (org-level-7 . 1.1)
+                  (org-level-8 . 1.1))
+                )
     (set-face-attribute (car face) nil :family jl/prog-font :weight 'regular :height (cdr face))
     (set-face-attribute 'org-link nil :weight 'regular)
     )
@@ -318,7 +316,6 @@
   (jl/org-mode-global-keys)
   :config
   (setq
-   org-format-latex-options (plist-put org-format-latex-options :background "Transparent")
    org-ellipsis " ▼"  ;; Change folded header ellipsis
    org-todo-keywords '((sequence "TODO" "WAITING" "|" "DONE" "CANCELLED"))
    org-todo-keyword-faces '(("WAITING" . "aquamarine1") ("CANCELLED" . "red"))
@@ -339,7 +336,9 @@
    ;; Latex in Org
    org-preview-latex-default-process 'luasvg
    org-latex-compiler "lualatex"
-   org-highlight-latex-and-related '(latex script entities))
+   org-highlight-latex-and-related '(latex script entities)
+   org-format-latex-options (plist-put org-format-latex-options :background "Transparent"))
+
 
   (jl/org-mode-key-bindings)
   (jl/org-font-setup)
@@ -369,6 +368,13 @@
   (org-refile-targets '(("~/Documents/Org/GTD/gtd.org" :maxlevel . 3)
                         ("~/Documents/Org/GTD/someday.org" :level . 1)
                         ("~/Documents/Org/GTD/tickler.org" :maxlevel . 2))))
+
+(use-package org-clock
+  :straight org
+  :defer t
+  :config
+  (setq org-clock-clocktable-default-properties (plist-put org-clock-clocktable-default-properties :maxlevel 5)))
+
 
 ;;; Org Roam
 (defun org-roam-force-rebuild-cache ()
@@ -426,34 +432,32 @@
     "rI" 'org-id-get-create))
 (defun jl/org-roam-templates ()
   (setq org-roam-capture-templates
-	'(("q" "quick note" plain
-	   "%?"
-	   :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
-	   :unnarrowed t)
+        '(("q" "quick note" plain
+           "%?"
+           :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+           :unnarrowed t)
 
-	  ("e" "encrypted note" plain
-	   "%?"
-	   :if-new (file+head "./encrypted/%<%Y%m%d%H%M%S>-${slug}.org.gpg" "#+title: ${title}\n")
-	   :unnarrowed t)
+          ("e" "encrypted note" plain
+           "%?"
+           :if-new (file+head "./encrypted/%<%Y%m%d%H%M%S>-${slug}.org.gpg" "#+title: ${title}\n")
+           :unnarrowed t)
 
-	  ("m" "mathematics note" plain
-	   "#+LATEX_HEADER: \\input{org-math-packages.tex} \\usepackage{math-macros} \\usepackage{math-environments}\n\n* %?"
-	   :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
-	   :unnarrowed t)
+          ("m" "mathematics note" plain
+           "#+LATEX_HEADER: \\input{org-math-packages.tex} \\usepackage{math-macros} \\usepackage{math-environments}\n\n* %?"
+           :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+           :unnarrowed t)
 
-	  ("f" "film note" plain
-	   "%?"
-	   :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: :films:\n[[id:352cef44-05f6-494c-8f65-c04241335eb0][Films]]\n* %?")
-	   :unnarrowed t)
-	  )))
+          ("f" "film note" plain
+           "%?"
+           :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: :films:\n[[id:352cef44-05f6-494c-8f65-c04241335eb0][Films]]\n* %?")
+           :unnarrowed t)
+          )))
 
 (defun jl/org-roam-daily-templates ()
   (setq org-roam-dailies-capture-templates
-	'(("d" "default" entry
-	   "* %?"
-	   :target (file+head "%<%Y-%m-%d>.org"
-			      "#+title: %<%Y-%m-%d>\n#+filetags: :Daily:\n [[id:24a82cf2-bc51-4b01-81f7-53968e483ee2][Daily Journal]]\n* [/] Daily Todos\n1. [ ]\n2. [ ]\n3. [ ]\n* Daily Tasks\n* Morning Thoughts\n* Evening Reflections")))))
-
+        '(("d" "default" entry
+           "* %?"
+           :target (file+datetree "journal.org" day)))))
 (use-package org-roam
   :defer t
   :commands (org-roam-node-find
@@ -479,7 +483,7 @@
 (use-package org-roam-ui
   :defer t
   :commands (org-roam-ui-mode
-	     org-roam-ui-open)
+             org-roam-ui-open)
   :after org-roam)
 
 ;;; Org Roam BibTeX
@@ -503,7 +507,7 @@
 
 (defun jl/org-mode-visual-fill ()
   (setq visual-fill-column-width 100
-	visual-fill-column-center-text t)
+        visual-fill-column-center-text t)
   (visual-fill-column-mode 1))
 
 (use-package visual-fill-column
@@ -586,8 +590,8 @@
   :defer t
   :after org
   :straight (:host github
-		   :repo "rlister/org-present"
-		   :branch "master"))
+                   :repo "rlister/org-present"
+                   :branch "master"))
 
 ;;; Org Capture
 (with-eval-after-load 'org-capture
