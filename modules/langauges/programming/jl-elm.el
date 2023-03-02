@@ -40,3 +40,6 @@
       :states '(normal visual operator)
       :major-modes t
       "v" 'elm-test-project)))
+
+(use-package ob-elm
+  :defer t)

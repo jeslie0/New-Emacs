@@ -339,6 +339,14 @@
    org-highlight-latex-and-related '(latex script entities)
    org-format-latex-options (plist-put org-format-latex-options :background "Transparent"))
 
+  (defadvice org-babel-execute-src-block (around load-language nil activate)
+    "Load language if needed"
+    (let ((language (org-element-property :language (org-element-at-point))))
+      (unless (cdr (assoc (intern language) org-babel-load-languages))
+        (add-to-list 'org-babel-load-languages (cons (intern language) t))
+        (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages))
+      ad-do-it))
+
 
   (jl/org-mode-key-bindings)
   (jl/org-font-setup)
@@ -386,50 +394,6 @@
   (org-roam-db-sync)
   (org-roam-update-org-id-locations))
 
-(defun jl/org-roam-global-keys ()
-  (jl/SPC-keys
-    "or" '(:ignore t :which-key "org-roam")
-    "ord" '(:ignore t :which-key "dailies")
-    "ort" '(:ignore t :which-key "tags")
-
-    "ordy" 'org-roam-dailies-goto-yesterday
-    "ordt" 'org-roam-dailies-goto-today
-    "ordT" 'org-roam-dailies-goto-tomorrow
-    "ordd" 'org-roam-dailies-goto-date
-    "orh" 'org-roam-force-rebuild-cache
-    "orf" 'org-roam-node-find
-    "orn" 'org-roam-node-find
-    "org" 'org-roam-ui-open
-    "ori" 'org-roam-node-insert
-    "orl" 'org-roam-buffer-toggle
-    "orta" 'org-roam-tag-add
-    "ortr" 'org-roam-tag-remove
-    "ora" 'org-roam-alias-add
-    "orI" 'org-id-get-create))
-
-(defun jl/org-roam-key-bindings ()
-  (jl/major-modes
-    :states '(normal visual motion)
-    :keymaps 'org-mode-map
-    :major-modes t
-
-    "r" '(:ignore t :which-key "org-roam")
-    "rd" '(:ignore t :which-key "dailies")
-    "rt" '(:ignore t :which-key "tags")
-    "rdy" 'org-roam-dailies-goto-yesterday
-    "rdt" 'org-roam-dailies-goto-today
-    "rdT" 'org-roam-dailies-goto-tomorrow
-    "rdd" 'org-roam-dailies-goto-date
-    "rf" 'org-roam-node-find
-    "rh" 'org-roam-force-rebuild-cache
-    "rn" 'org-roam-node-find
-    "rg" 'org-roam-ui-open
-    "ri" 'org-roam-node-insert
-    "rl" 'org-roam-buffer-toggle
-    "rta" 'org-roam-tag-add
-    "rtr" 'org-roam-tag-remove
-    "ra" 'org-roam-alias-add
-    "rI" 'org-id-get-create))
 (defun jl/org-roam-templates ()
   (setq org-roam-capture-templates
         '(("q" "quick note" plain
@@ -450,16 +414,51 @@
           ("f" "film note" plain
            "%?"
            :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: :films:\n[[id:352cef44-05f6-494c-8f65-c04241335eb0][Films]]\n* %?")
-           :unnarrowed t)
-          )))
+           :unnarrowed t))))
 
-(defun jl/org-roam-daily-templates ()
-  (setq org-roam-dailies-capture-templates
-        '(("d" "default" entry
-           "* %?"
-           :target (file+datetree "journal.org" day)))))
 (use-package org-roam
   :defer t
+  :general
+  (jl/major-modes
+    :states '(normal visual motion)
+    :keymaps 'org-mode-map
+    :major-modes t
+
+    "r" '(:ignore t :which-key "org-roam")
+    "rd" '(:ignore t :which-key "dailies")
+    "rt" '(:ignore t :which-key "tags")
+    "rdy" 'org-roam-dailies-goto-yesterday
+    "rdt" 'org-roam-dailies-goto-today
+    "rdT" 'org-roam-dailies-goto-tomorrow
+    "rdd" 'org-roam-dailies-goto-date
+    "rf" 'org-roam-node-find
+    "rh" 'org-roam-force-rebuild-cache
+    "rn" 'org-roam-node-find
+    "ri" 'org-roam-node-insert
+    "rl" 'org-roam-buffer-toggle
+    "rta" 'org-roam-tag-add
+    "rtr" 'org-roam-tag-remove
+    "ra" 'org-roam-alias-add
+    "rI" 'org-id-get-create)
+  (jl/SPC-keys
+    "or" '(:ignore t :which-key "org-roam")
+    "ord" '(:ignore t :which-key "dailies")
+    "ort" '(:ignore t :which-key "tags")
+
+    "ordy" 'org-roam-dailies-goto-yesterday
+    "ordt" 'org-roam-dailies-goto-today
+    "ordT" 'org-roam-dailies-goto-tomorrow
+    "ordd" 'org-roam-dailies-goto-date
+    "orh" 'org-roam-force-rebuild-cache
+    "orf" 'org-roam-node-find
+    "orn" 'org-roam-node-find
+    "ori" 'org-roam-node-insert
+    "orl" 'org-roam-buffer-toggle
+    "orta" 'org-roam-tag-add
+    "ortr" 'org-roam-tag-remove
+    "ora" 'org-roam-alias-add
+    "orI" 'org-id-get-create)
+
   :commands (org-roam-node-find
              org-roam-dailies-goto-date
              org-roam-dailies-goto-today
@@ -471,19 +470,31 @@
   (org-roam-directory "~/Documents/Roam/")
   (org-roam-node-display-template (concat "${title:*} " (propertize "${tags}" 'face 'org-tag)))
   :init
-  (jl/org-roam-global-keys)
-  (jl/org-roam-daily-templates)
   (jl/org-roam-templates)
+  (setq org-roam-dailies-capture-templates
+        '(("d" "default" entry
+           "* %?"
+           :target (file+datetree "journal.org" day))))
   :config
   (add-to-list 'org-agenda-files "~/Documents/Roam/daily")
-  (org-roam-db-autosync-mode)
-  (jl/org-roam-key-bindings))
+  (org-roam-db-autosync-mode))
+
+
 
 ;;; Org Roam Ui
 (use-package org-roam-ui
   :defer t
   :commands (org-roam-ui-mode
              org-roam-ui-open)
+  :general
+  (jl/SPC-keys
+    "org" 'org-roam-ui-open)
+
+  (jl/major-modes
+    :states '(normal visual motion)
+    :keymaps 'org-mode-map
+    :major-modes t
+    "rg" 'org-roam-ui-open)
   :after org-roam)
 
 ;;; Org Roam BibTeX
@@ -517,62 +528,7 @@
 (use-package org-fragtog
   :defer t
   :after org
-  :hook (org-mode . org-fragtog-mode)
-  )
-
-;;; Org Babel
-;; Calling org-babel languages in the following form saves a lot on startup time.
-
-(use-package ob-shell
-  :straight org
-  :commands
-  (org-babel-execute:sh
-   org-babel-expand-body:sh
-
-   org-babel-execute:bash
-   org-babel-expand-body:bash)
-  :config
-  (add-to-list 'org-babel-load-languages '(shell . t)))
-
-(use-package ob-python
-  :straight org
-  :commands
-  (org-babel-execute:python
-   org-babel-expand-body:python))
-
-(use-package ob-emacs-lisp
-  :straight org
-  :commands
-  (org-babel-execute:emacs-lisp
-   org-babel-expand-body:emacs-lisp
-   org-babel-execute:elisp
-   org-babel-expand-body:elisp))
-
-(use-package ob-js
-  :straight org
-  :commands
-  (org-babel-execute:js
-   org-babel-expand-body:js))
-
-(use-package ob-latex
-  :straight org
-  :commands
-  (org-babel-execute:latex
-   org-babel-expand-body:latex))
-
-(use-package ob-haskell
-  :straight org
-  :commands
-  (org-babel-execute:haskell
-   org-babel-expand-body:haskell))
-
-(use-package ob-C
-  :straight org
-  :commands
-  (org-babel-execute:C
-   org-babel-expand-body:C
-   org-babel-execute:C++
-   org-babel-expand-body:C++))
+  :hook (org-mode . org-fragtog-mode))
 
 ;;; Evil Org
 (use-package evil-org

@@ -41,3 +41,6 @@
    :states '(normal visual operator)
    :major-modes t
    "=" 'rust-format-buffer))
+
+(use-package ob-rust
+  :defer t)

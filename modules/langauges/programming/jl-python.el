@@ -31,3 +31,6 @@
 (use-package blacken
   :defer t
   :hook (python-mode . blacken-mode))
+
+(use-package ob-ipython
+  :defer t)

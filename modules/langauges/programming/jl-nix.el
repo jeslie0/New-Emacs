@@ -84,3 +84,7 @@
 (use-package nix-drv-mode
   :straight nix-mode
   :mode "\\.drv\\'")
+
+(use-package ob-nix
+  :defer t
+  )
