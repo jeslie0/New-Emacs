@@ -388,24 +388,24 @@
 
 (defun jl/org-roam-global-keys ()
   (jl/SPC-keys
-    "aor" '(:ignore t :which-key "org-roam")
-    "aord" '(:ignore t :which-key "dailies")
-    "aort" '(:ignore t :which-key "tags")
+    "or" '(:ignore t :which-key "org-roam")
+    "ord" '(:ignore t :which-key "dailies")
+    "ort" '(:ignore t :which-key "tags")
 
-    "aordy" 'org-roam-dailies-goto-yesterday
-    "aordt" 'org-roam-dailies-goto-today
-    "aordT" 'org-roam-dailies-goto-tomorrow
-    "aordd" 'org-roam-dailies-goto-date
-    "aorh" 'org-roam-force-rebuild-cache
-    "aorf" 'org-roam-node-find
-    "aorn" 'org-roam-node-find
-    "aorg" 'org-roam-ui-open
-    "aori" 'org-roam-node-insert
-    "aorl" 'org-roam-buffer-toggle
-    "aorta" 'org-roam-tag-add
-    "aortr" 'org-roam-tag-remove
-    "aora" 'org-roam-alias-add
-    "aorI" 'org-id-get-create))
+    "ordy" 'org-roam-dailies-goto-yesterday
+    "ordt" 'org-roam-dailies-goto-today
+    "ordT" 'org-roam-dailies-goto-tomorrow
+    "ordd" 'org-roam-dailies-goto-date
+    "orh" 'org-roam-force-rebuild-cache
+    "orf" 'org-roam-node-find
+    "orn" 'org-roam-node-find
+    "org" 'org-roam-ui-open
+    "ori" 'org-roam-node-insert
+    "orl" 'org-roam-buffer-toggle
+    "orta" 'org-roam-tag-add
+    "ortr" 'org-roam-tag-remove
+    "ora" 'org-roam-alias-add
+    "orI" 'org-id-get-create))
 
 (defun jl/org-roam-key-bindings ()
   (jl/major-modes
