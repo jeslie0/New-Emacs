@@ -34,7 +34,7 @@
   (general-define-key
    :keymaps 'eglot-mode-map
    :states '(normal operator)
-   "K" 'eldoc-box-eglot-help-at-point)
+   "K" 'eldoc-box-help-at-point)
   (add-to-list 'eglot-server-programs '(csharp-mode . ("OmniSharp" "-lsp")))
   (add-to-list 'eglot-server-programs '(csharp-tree-sitter-mode . ("OmniSharp" "-lsp")))
   (add-to-list 'eglot-server-programs `(python-ts-mode . ,(eglot-alternatives '("pylsp" "pyls" ("pyright-langserver" "--stdio") "jedi-language-server"))))
@@ -48,3 +48,8 @@
     :keymaps 'eglot-mode-map
     :states '(normal visual operator)
     "=s" #'consult-eglot-symbols))
+
+(use-package breadcrumb
+  :defer t
+  :straight (:host github :repo "joaotavora/breadcrumb" :files ("breadcrumb.el"))
+  :hook (eglot-managed-mode . breadcrumb-local-mode))

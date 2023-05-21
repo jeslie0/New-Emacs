@@ -7,6 +7,11 @@
   (eldoc-echo-area-use-multiline-p nil))
 
 (use-package eldoc-box
-  :commands eldoc-box-eglot-help-at-point
+  :after eldoc
+  :commands eldoc-box-help-at-point
+  :general
+  (general-define-key
+   :states '(normal operator)
+   "K" 'eldoc-box-help-at-point)
   :config
   (set-face-attribute 'eldoc-box-body nil :background (face-background 'solaire-default-face)))
