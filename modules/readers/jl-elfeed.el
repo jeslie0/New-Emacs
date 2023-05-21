@@ -35,19 +35,9 @@
         	  ("https://xkcd.com/atom.xml" webcomic xkcd)
                   ("https://mmhaskell.com/blog/atom.xml" haskell mmm)
                   ("https://www.tweag.io/rss.xml" tweag)
-                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCAiiOTio8Yu69c3XnR7nQBQ" youtube system-crafters) ;; System Crafters
-                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCG5h8yHSUS4n7zPnh0dG0SA" youtube georg-rockall-schmidt) ;; Georg Rockall-Schmidt
-                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCxLYtICsUCWdr1YPrj5DtwA" youtube ordinary-things) ;; Ordinary Things
-                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCnEuIogVV2Mv6Q1a3nHIRsQ" youtube carefree-wandering) ;; Carefree Wandering
-                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCR1D15p_vdP3HkrH8wgjQRw" youtube internet-historian) ;; Internet Historian
                   ))
   :config
   (defun elfeed-view-mpv ()
     "Watch a video from URL in MPV"
     (interactive)
     (async-shell-command (format "mpv %s" (thing-at-point-url-at-point)))))
-
-(use-package elfeed-score
-  :after elfeed
-  :config
-  (elfeed-score-enable))

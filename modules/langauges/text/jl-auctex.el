@@ -103,6 +103,7 @@
 	 (LaTeX-mode . TeX-PDF-mode)
          (LaTeX-mode . display-line-numbers-mode)
          (LaTeX-mode . smartparens-mode)
+         (LaTeX-mode . (lambda () (turn-on-reftex)))
          (LaTeX-mode . (lambda () (LaTeX-add-environments
                                    '("theorem")
                                    '("proof")
@@ -122,11 +123,11 @@
         TeX-electric-sub-and-superscript t  ;; Insert braces after ^ or _
         TeX-electric-math '("\\(" . "\\)")  ;; Use \( \) as the dollar
         LaTeX-electric-left-right-brace t   ;; Close brackets sensibly
-        TeX-view-program-selection '((output-pdf "PDF Tools"))
+        TeX-view-program-selection '((output-pdf "Zathura"))
         TeX-source-correlate-start-server t)
 
   (setq texmathp-tex-commands '(("tikzcd" 'env-on))) ;; Custom math envs
-  (setq reftex-plug-into-auctex t
+  (setq reftex-plug-into-AUCTeX t
         reftex-default-bibliography '("~/texmf/bibtex/bib/bibliography.bib")
         reftex-label-alist '(("theorem" ?h "thm:" "~\\ref{%s}" t   ("theorem" "th.") -3)
                              ("proof"   ?g "pf:"  "~\\ref{%s}" t   ("proof" "pf.") -3)
@@ -175,3 +176,12 @@
 
 (use-package lsp-latex
   :defer t)
+
+(use-package latex-change-env
+  :defer t
+  :general
+  (jl/major-modes
+    :keymaps 'LaTeX-mode-map
+    :states '(normal visual motion)
+    :major-modes t
+    "C" #'latex-change-env))
