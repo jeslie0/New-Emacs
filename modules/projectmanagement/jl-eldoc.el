@@ -12,6 +12,6 @@
   :general
   (general-define-key
    :states '(normal operator)
-   "K" 'eldoc-box-help-at-point)
+   "K" #'eldoc-box-help-at-point)
   :config
   (set-face-attribute 'eldoc-box-body nil :background (face-background 'solaire-default-face)))

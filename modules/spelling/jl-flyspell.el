@@ -1,6 +1,7 @@
 (use-package flyspell
   :defer t
   :hook
+  (git-commit-mode . flyspell-mode)
   (prog-mode . flyspell-prog-mode)
   (text-mode . flyspell-mode)
   :general

@@ -34,3 +34,15 @@
 
 (use-package ob-ipython
   :defer t)
+
+(use-package sphinx-doc
+  :defer t
+  :hook ((python-mode python-ts-mode) . sphinx-doc-mode)
+  :config
+  (setq sphinx-doc-include-types t)
+  :general
+  (jl/major-modes
+    :keymaps '(python-mode-map python-ts-mode-map)
+    :states '(normal visual operator)
+    :major-modes t
+    "d" #'sphinx-doc))

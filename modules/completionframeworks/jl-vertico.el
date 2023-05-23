@@ -71,13 +71,6 @@ folder, otherwise delete a character backward"
   (setq completion-styles '(orderless basic)
         completion-category-overrides '((file (styles basic partial-completion)))))
 
-;;; All the icons completion
-(use-package all-the-icons-completion
-  :after marginalia
-  :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
-  :init
-  (all-the-icons-completion-mode))
-
 ;;; Savehist
 (use-package savehist
   :after vertico

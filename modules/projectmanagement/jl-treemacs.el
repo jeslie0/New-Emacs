@@ -132,8 +132,4 @@
 ;;   :hook (dired-mode . treemacs-icons-dired-enable-once))
 
 
-;;; Treemacs All The Icons
-(use-package treemacs-all-the-icons
-  :after (treemacs all-the-icons)
-  :hook ((treemacs-mode dired-mode) . (lambda ()
-					(treemacs-load-theme 'all-the-icons))))
+
