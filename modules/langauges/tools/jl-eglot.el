@@ -30,6 +30,7 @@
   (eglot-confirm-server-initiated-edits nil)
   (eglot-extend-to-xref)
   :config
+  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
   (setq eglot-report-progress nil)
   (add-to-list 'completion-category-overrides '(eglot (styles orderless)))
   (general-define-key

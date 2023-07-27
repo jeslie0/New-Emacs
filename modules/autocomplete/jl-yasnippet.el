@@ -25,3 +25,8 @@
 (use-package yatemplate
   :defer t
   :after yasnippet)
+
+
+(use-package cape-yasnippet
+  :defer t
+  :straight (:host github :repo "elken/cape-yasnippet" :branch "master" :files ("cape-yasnippet.el")))
