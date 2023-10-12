@@ -35,7 +35,7 @@
 
 ;; Set the fonts
 (defvar jl/prog-font
-  "Fira Code")
+  "Cascadia Code")
 
 (defvar jl/text-font
   "Gill Sans")

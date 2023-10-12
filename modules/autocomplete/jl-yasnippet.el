@@ -29,4 +29,5 @@
 
 (use-package cape-yasnippet
   :defer t
+  :after cape
   :straight (:host github :repo "elken/cape-yasnippet" :branch "master" :files ("cape-yasnippet.el")))

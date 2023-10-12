@@ -4,4 +4,9 @@
   :general
   (jl/SPC-keys
     :modes '(normal visual operator)
-    "arm" 'ement-connect))
+    "arm" 'ement-connect)
+  :custom
+  (ement-room-prism 'both)
+  (ement-save-sessions t) ;; Beware, this stores your token to disk in
+  ;; plain text!
+  )

@@ -2,8 +2,11 @@
   :straight (:type built-in)
   :commands (eglot)
   :hook (eglot-managed-mode . (lambda ()
-                                (make-local-variable 'completion-at-point-functions)
-                                (setq-local completion-at-point-functions (list (cape-super-capf #'eglot-completion-at-point #'cape-dabbrev)))))
+                                ;; (make-local-variable 'completion-at-point-functions)
+                                (setq-local completion-at-point-functions
+                                            (list (cape-super-capf
+                                                   #'eglot-completion-at-point
+                                                   #'cape-dabbrev)))))
   :general
   (jl/lsp-keys
     :keymaps 'eglot-mode-map
@@ -30,8 +33,8 @@
   (eglot-confirm-server-initiated-edits nil)
   (eglot-extend-to-xref)
   :config
-  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
-  (setq eglot-report-progress nil)
+  ;; (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
+  ;; (setq eglot-report-progress nil)
   (add-to-list 'completion-category-overrides '(eglot (styles orderless)))
   (general-define-key
    :keymaps 'eglot-mode-map
@@ -42,7 +45,13 @@
   (add-to-list 'eglot-server-programs `(python-ts-mode . ,(eglot-alternatives '("pylsp" "pyls" ("pyright-langserver" "--stdio") "jedi-language-server"))))
   (add-to-list 'eglot-server-programs `((c-ts-mode c++-ts-mode) . ,(eglot-alternatives '("clangd" "ccls"))))
   (add-to-list 'eglot-server-programs '(cmake-ts-mode . ("cmake-language-server")))
-  (add-to-list 'eglot-server-programs '(nix-mode . ("nil"))))
+  (add-to-list 'eglot-server-programs '(nix-mode . ("nil")))
+  ;; Speedups?
+  (fset #'jsonrpc--log-event #'ignore)
+  (setq eglot-events-buffer-size 0)
+  (setq eglot-sync-connect nil)
+  (setq eglot-connect-timeout nil)
+  )
 
 (use-package consult-eglot
   :after (consult eglot)

@@ -22,9 +22,9 @@
   (corfu-on-exact-match nil)     ;; Configure handling of exact matches
   (corfu-echo-documentation nil) ;; Disable documentation in the echo area
   (corfu-scroll-margin 5)        ;; Use scroll margin
-  (corfu-auto-delay 0.2)         ;; Don't wait to show corfu after
+  (corfu-auto-delay 0.0)         ;; Don't wait to show corfu after
                                  ;; prefix has been hit
-  (corfu-auto-prefix 2)
+  (corfu-auto-prefix 1)
   ;; Works with `indent-for-tab-command'. Make sure tab doesn't indent when you
   ;; want to perform completion
   (tab-always-indent 'complete)

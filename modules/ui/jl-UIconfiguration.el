@@ -181,3 +181,6 @@
 (use-package display-line-numbers
   :defer t
   :hook ((prog-mode) . display-line-numbers-mode))
+
+
+(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
