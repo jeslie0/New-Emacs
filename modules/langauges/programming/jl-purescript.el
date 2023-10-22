@@ -1,6 +1,8 @@
 (use-package purescript-mode
   :defer t
-  :hook (purescript-mode . purescript-indentation-mode))
+  :hook (purescript-mode . purescript-indentation-mode)
+  :config
+  (modify-syntax-entry ?. "." purescript-mode-syntax-table))
 
 (use-package dhall-mode
   :defer t)
