@@ -48,9 +48,9 @@
   (add-to-list 'eglot-server-programs '(nix-mode . ("nil")))
   ;; Speedups?
   (fset #'jsonrpc--log-event #'ignore)
-  (setq eglot-events-buffer-size 0)
-  (setq eglot-sync-connect nil)
-  (setq eglot-connect-timeout nil)
+  ;; (setq eglot-events-buffer-size 0)
+  ;; (setq eglot-sync-connect nil)
+  ;; (setq eglot-connect-timeout nil)
   )
 
 (use-package consult-eglot
