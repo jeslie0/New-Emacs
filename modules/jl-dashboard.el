@@ -25,11 +25,10 @@
   (dashboard-set-file-icons t)
   (dashboard-set-init-info t)
   (dashboard-items '((recents . 5)
-		     (projects . 5)
+		             (projects . 5)
                      (bookmarks . 5)))
 
   (initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
-
   :config
   (defun buffer-visit-dashboard ()
     (interactive)

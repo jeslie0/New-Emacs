@@ -1,4 +1,5 @@
 (use-package vc
+  :defer t
   :general
   (jl/SPC-keys
     :prefix-map 'vc-prefix-map

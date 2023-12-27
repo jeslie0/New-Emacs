@@ -6,7 +6,9 @@
                                 (setq-local completion-at-point-functions
                                             (list (cape-super-capf
                                                    #'eglot-completion-at-point
-                                                   #'cape-dabbrev)))))
+                                                   #'cape-dabbrev
+                                                   #'yasnippet-capf
+                                                   )))))
   :general
   (jl/lsp-keys
     :keymaps 'eglot-mode-map

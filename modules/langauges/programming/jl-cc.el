@@ -31,5 +31,5 @@
     "ds" 'gendoxy-group-start
     "de" 'gendoxy-group-end))
 
-(use-package cmake-mode)
-(use-package cpputils-cmake)
+(use-package cmake-mode
+  :defer t)

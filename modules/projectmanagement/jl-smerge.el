@@ -1,4 +1,5 @@
 (use-package smerge-mode
+  :defer t
   :general
   (jl/SPC-keys
     "gm" '(:ignore t :which-key "smerge"

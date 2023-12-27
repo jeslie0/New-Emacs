@@ -12,4 +12,6 @@
   ;; (setq elfeed-tube-auto-fetch-p t) ;;  t is auto-fetch (default)
   (elfeed-tube-setup))
 
-(use-package elfeed-tube-mpv)
+(use-package elfeed-tube-mpv
+  :after elfeed-tube
+  :defer t)

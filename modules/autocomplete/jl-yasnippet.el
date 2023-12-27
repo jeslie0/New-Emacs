@@ -27,6 +27,6 @@
   :after yasnippet)
 
 
-(use-package cape-yasnippet
+(use-package yasnippet-capf
   :after cape
-  :straight (:host github :repo "elken/cape-yasnippet" :branch "master" :files ("cape-yasnippet.el")))
+  :straight (:host github :repo "elken/yasnippet-capf" :branch "master" :files ("yasnippet-capf.el")))

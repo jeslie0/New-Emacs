@@ -1,5 +1,5 @@
 (use-package magit-todos
-  :defer t
+  :after magit
   :general
   (jl/SPC-keys
     :states '(normal visual operator)

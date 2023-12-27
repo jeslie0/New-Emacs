@@ -1,5 +1,5 @@
 (use-package elfeed
-  :commands (elfeed)
+  :defer t
   :general
   (jl/major-modes
     :keymaps 'elfeed-search-mode-map
@@ -25,14 +25,14 @@
     "are" 'elfeed)
   :custom
   (elfeed-feeds '(("https://golem.ph.utexas.edu/category/atom10.xml" mathematics cat-cafe)
-        	  ("https://homotopytypetheory.org/feed.xml" mathematics hott)
-        	  ("https://terrytao.wordpress.com/feed.xml" mathematics terry-tao)
-        	  ("https://gowers.wordpress.com/feed.xml" mathematics timothy-gowers)
-        	  ("https://bartoszmilewski.com/feed.xml" mathematics bartosz-milewski)
-        	  ("http://logic-forall.blogspot.com/feeds/posts/default" mathematics)
-        	  ("https://jeslie0.github.io/rss.xml" mathematics james-leslie)
+                  ("https://homotopytypetheory.org/feed.xml" mathematics hott)
+                  ("https://terrytao.wordpress.com/feed.xml" mathematics terry-tao)
+                  ("https://gowers.wordpress.com/feed.xml" mathematics timothy-gowers)
+                  ("https://bartoszmilewski.com/feed.xml" mathematics bartosz-milewski)
+                  ("http://logic-forall.blogspot.com/feeds/posts/default" mathematics)
+                  ("https://jeslie0.github.io/rss.xml" mathematics james-leslie)
                   ("https://www.mohabatmath.ca/feed.xml" mathematics mohabat-tarkeshian)
-        	  ("https://xkcd.com/atom.xml" webcomic xkcd)
+                  ("https://xkcd.com/atom.xml" webcomic xkcd)
                   ("https://mmhaskell.com/blog/atom.xml" haskell mmm)
                   ("https://www.tweag.io/rss.xml" tweag)
                   ))

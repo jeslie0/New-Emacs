@@ -60,7 +60,7 @@
     "tf" 'slime-toggle-fancy-trace))
 
 (use-package evil-cleverparens
-  :hook ((common-lisp-mode emacs-lisp-mode) . evil-cleverparens-mode)
+  :hook ((common-lisp-mode emacs-lisp-mode lisp-data-mode) . evil-cleverparens-mode)
   :defer t)
 
 (jl/SPC-keys

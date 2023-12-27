@@ -270,13 +270,13 @@ there are no attachments."
 
 ;;; Mu4e
 (use-package mu4e
+  :straight nil
   :commands mu4e
   :general
   (jl/C-c-keys
     "e" 'mu4e)
   (jl/SPC-keys
     "ae" 'mu4e)
-  :straight nil
   :hook ((mu4e-compose-mode . visual-fill-column-mode)
 	 ;; (mu4e-compose-mode . variable-pitch-mode)
 	 (mu4e-view-mode . visual-fill-column-mode))

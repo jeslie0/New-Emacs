@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: dir-locals
+# key: <dir-locals
+# --
+((nil
+  . ((compile-command . "make")
+
+     (eglot-workspace-configuration
+      . ())))
+
+ (auto-mode-alist
+  . (("\\.clangd\\'" . yaml-ts-mode)
+     ("\\.clang-format\\'" . python-ts-mode)))
+
+ (c++-ts-mode
+  . ((c-ts-mode-indent-offset . 4))))

@@ -96,11 +96,11 @@
 (use-package tex
   :straight auctex
   :hook ((LaTeX-mode . outline-minor-mode)
-	 (LaTeX-mode . visual-line-mode)
-	 (LaTeX-mode . TeX-fold-mode)
-	 (LaTeX-mode . LaTeX-math-mode)
+         (LaTeX-mode . visual-line-mode)
+         (LaTeX-mode . TeX-fold-mode)
+         (LaTeX-mode . LaTeX-math-mode)
          (LaTeX-mode . TeX-source-correlate-mode)
-	 (LaTeX-mode . TeX-PDF-mode)
+         (LaTeX-mode . TeX-PDF-mode)
          (LaTeX-mode . display-line-numbers-mode)
          (LaTeX-mode . smartparens-mode)
          (LaTeX-mode . (lambda () (turn-on-reftex)))
@@ -119,6 +119,7 @@
   (jl/auctex-keys)
   (setq TeX-parse-self t     ;; Enable Parse on load
         TeX-auto-save t      ;; Enable Parse on save
+        TeX-master nil
         TeX-engine 'luatex   ;; Default to compiling with luqlatex
         TeX-electric-sub-and-superscript t  ;; Insert braces after ^ or _
         TeX-electric-math '("\\(" . "\\)")  ;; Use \( \) as the dollar
@@ -146,9 +147,9 @@
     (interactive)
     (let ((env (read-from-minibuffer "Fold Environment: ")))
       (save-excursion
-	(goto-char (point-min))
-	(while (search-forward (format "begin{%s}" env) nil t)
-	  (TeX-fold-env))))))
+	    (goto-char (point-min))
+	    (while (search-forward (format "begin{%s}" env) nil t)
+	      (TeX-fold-env))))))
 
   ;;; Functions
 

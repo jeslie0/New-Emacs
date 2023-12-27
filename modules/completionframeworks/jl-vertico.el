@@ -43,6 +43,7 @@ folder, otherwise delete a character backward"
 
 ;;; Consult
 (use-package consult
+  :defer t
   :general
   ("C-s" 'consult-line)
   (jl/SPC-keys
@@ -88,6 +89,7 @@ folder, otherwise delete a character backward"
 
 ;;; Embark
 (use-package embark
+  :defer t
   :commands
   (embark-act
    embark-dwim
@@ -100,7 +102,8 @@ folder, otherwise delete a character backward"
   (prefix-help-command #'embark-prefix-help-command))
 
 ;;; Embark-consult
-(use-package embark-consult)
+(use-package embark-consult
+  :after embark)
 
 ;;; Consult-dir
 (use-package consult-dir
