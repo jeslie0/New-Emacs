@@ -316,10 +316,8 @@
   (jl/org-mode-global-keys)
   :config
   (setq
-   org-ellipsis " ▼"  ;; Change folded header ellipsis
    org-todo-keywords '((sequence "TODO" "WAITING" "|" "DONE" "CANCELLED"))
    org-todo-keyword-faces '(("WAITING" . "aquamarine1") ("CANCELLED" . "red"))
-   org-startup-indented t
    org-display-remote-inline-images 'download
    org-hide-emphasis-markers nil
    org-src-tab-acts-natively t
@@ -328,11 +326,11 @@
    org-hide-block-startup t
    org-edit-src-content-indentation 0
    org-startup-with-latex-preview t
-   org-enable-reveal-js-support t
-   org-protocol-default-template-key "w"
    org-image-actual-width nil
-   org-preview-latex-image-directory "~/Documents/Org/ltximg/"
-   org-export-backends '(ascii beamer html icalendar latex md odt)
+   org-preview-latex-image-directory "/tmp/ltximg/"
+   org-export-backends (cons 'beamer (default-value 'org-export-backends))
+   org-babel-default-header-args (cons '(:async . "") (default-value 'org-babel-default-header-args))
+
    ;; Latex in Org
    org-preview-latex-default-process 'luasvg
    org-latex-compiler "lualatex"
@@ -346,7 +344,6 @@
         (add-to-list 'org-babel-load-languages (cons (intern language) t))
         (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages))
       ad-do-it))
-
 
   (jl/org-mode-key-bindings)
   (jl/org-font-setup)
@@ -511,24 +508,24 @@
 
 ;;; Org Minor Modes
 
-(use-package org-superstar
-  :defer t
-  :after org
-  :hook (org-mode . org-superstar-mode))
+;; (use-package org-superstar
+;;   :defer t
+;;   :after org
+;;   :hook (org-mode . org-superstar-mode))
 
 (defun jl/org-mode-visual-fill ()
   (setq visual-fill-column-width 100
         visual-fill-column-center-text t)
   (visual-fill-column-mode 1))
 
-(use-package visual-fill-column
-  :defer t
-  :hook (org-mode . jl/org-mode-visual-fill))
+;; (use-package visual-fill-column
+;;   :defer t
+;;   :hook (org-mode . jl/org-mode-visual-fill))
 
-(use-package org-fragtog
-  :defer t
-  :after org
-  :hook (org-mode . org-fragtog-mode))
+;; (use-package org-fragtog
+;;   :defer t
+;;   :after org
+;;   :hook (org-mode . org-fragtog-mode))
 
 ;;; Evil Org
 (use-package evil-org
@@ -570,8 +567,7 @@
 (use-package toc-org
   :defer t
   :after org
-  :hook (org-mode . toc-org-mode)
-  )
+  :hook (org-mode . toc-org-mode))
 
 ;;; OX Publish
 (use-package ox-publish
@@ -584,3 +580,32 @@
   :after org
   :config
   (setq org-latex-src-block-backend 'engraved))
+
+(use-package org-modern
+  :after org
+  :hook ((org-mode . org-modern-mode)
+         (org-agenda-finalize-hook . org-modern-agenda))
+  :init
+  (setq
+   ;; Edit settings
+   org-auto-align-tags nil
+   org-tags-column 0
+   org-catch-invisible-edits 'show-and-error
+   org-special-ctrl-a/e t
+   org-insert-heading-respect-content t
+
+   ;; Org styling, hide markup etc.
+   org-hide-emphasis-markers t
+   org-pretty-entities t
+   org-ellipsis "…"
+
+   ;; Agenda styling
+   org-agenda-tags-column 0
+   org-agenda-block-separator ?─
+   org-agenda-time-grid
+   '((daily today require-timed)
+     (800 1000 1200 1400 1600 1800 2000)
+     " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
+   org-agenda-current-time-string
+   "◀── now ─────────────────────────────────────────────────")
+  )

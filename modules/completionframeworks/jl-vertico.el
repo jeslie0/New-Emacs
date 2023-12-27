@@ -107,7 +107,7 @@ folder, otherwise delete a character backward"
 
 ;;; Consult-dir
 (use-package consult-dir
-  :after consult
+  :defer t
   :general
   (general-define-key
    :keymaps 'vertico-map

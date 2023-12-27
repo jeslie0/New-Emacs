@@ -8,7 +8,6 @@
   :defer t)
 
 (use-package psci
-  :straight (:host github :repo "jeslie0/emacs-psci" :branch "master" :files ("psci.el"))
   :defer t
   :general
   (jl/major-modes
