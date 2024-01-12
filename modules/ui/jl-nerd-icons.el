@@ -1,7 +1,10 @@
 ;;; Nerd icons completion
 
 (use-package nerd-icons
-  :defer t)
+  :defer t
+  :init
+  (add-to-list 'nerd-icons-extension-icon-alist '("purs" nerd-icons-sucicon "nf-seti-purescript" :face nerd-icons-dpurple))
+  (add-to-list 'nerd-icons-extension-icon-alist '("lock" nerd-icons-faicon "nf-fa-lock" :face nerd-icons-dred)))
 
 (use-package nerd-icons-dired
   :defer t

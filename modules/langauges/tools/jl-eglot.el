@@ -50,9 +50,23 @@
   (add-to-list 'eglot-server-programs '(nix-mode . ("nil")))
   ;; Speedups?
   (fset #'jsonrpc--log-event #'ignore)
-  ;; (setq eglot-events-buffer-size 0)
-  ;; (setq eglot-sync-connect nil)
-  ;; (setq eglot-connect-timeout nil)
+  (setq eglot-events-buffer-size 0)
+  (setq eglot-sync-connect nil)
+  (setq eglot-connect-timeout nil)
+
+    ;; I'm not sure why this is needed, but it throws an error if I remove it
+    (cl-defmethod project-root ((project (head eglot-project)))
+      (cdr project))
+
+    (defun my-project-try-tsconfig-json (dir)
+      (when-let* ((found (or (locate-dominating-file dir "jsconfig.json") (locate-dominating-file dir "tsconfig.json"))))
+        (cons 'eglot-project found)))
+
+    (add-hook 'project-find-functions
+              'my-project-try-tsconfig-json nil nil)
+
+    (add-to-list 'eglot-server-programs
+                 '((typescript-mode) "typescript-language-server" "--stdio"))
   )
 
 (use-package consult-eglot
