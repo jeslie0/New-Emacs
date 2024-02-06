@@ -1,5 +1,8 @@
 (use-package eglot
-  :straight (:type built-in)
+  :straight (eglot :type git
+                   :host nil
+                   :repo "git://git.sv.gnu.org/emacs.git"
+                   :files ("lisp/progmodes/eglot.el"))
   :commands (eglot)
   :hook (eglot-managed-mode . (lambda ()
                                 ;; (make-local-variable 'completion-at-point-functions)
