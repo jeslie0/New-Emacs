@@ -12,26 +12,11 @@
 
 (defadvice load-theme (after run-after-load-theme-hook activate)
   "Run `after-load-theme-hook'."
-  (run-hooks 'after-load-theme-hook))
-
-(use-package doom-themes
-  :defer t)
-
-(use-package nord-theme
-  :defer t)
-
-(use-package dracula-theme
-  :defer t)
-
-(use-package vscode-dark-plus-theme
-  :defer t)
+  (run-hooks 'after-load-theme-hook)
+  (set-face-attribute 'default nil :weight 'light)
+  (set-face-attribute 'font-lock-comment-face nil :slant 'italic))
 
 ;;; All the icons
-
-
-
-
-
 
 ;;; Modelines
 (use-package doom-modeline
@@ -184,3 +169,11 @@
 
 
 (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+
+;(use-package font-lock
+;  :straight nil
+;  :defer t
+;  :custom-face
+;  (font-lock-comment-face ((t (:inherit font-lock-comment-face :italic t))))
+;  (font-lock-doc-face ((t (:inherit font-lock-doc-face :italic t))))
+;  (font-lock-string-face ((t (:inherit font-lock-string-face :italic t)))))

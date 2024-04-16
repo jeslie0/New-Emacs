@@ -39,4 +39,6 @@
     (switch-to-buffer "*dashboard*")
     (dashboard-refresh-buffer))
   (dashboard-setup-startup-hook)
-  (dashboard-refresh-buffer))
+  (dashboard-refresh-buffer)
+  (set-face-attribute 'dashboard-items-face nil :inherit nil :slant 'italic)
+  )

@@ -40,7 +40,6 @@
 (defvar jl/text-font
   "Gill Sans")
 
-
 (set-face-attribute 'default nil :family jl/prog-font :height 100)
 ;; Set the fixed pitch face
 (set-face-attribute 'fixed-pitch nil :family jl/prog-font :height 100)

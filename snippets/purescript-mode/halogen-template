@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: Halogen Template
+# key: <ht
+# --
+
+type $1Options :: Row Type
+type $1Options =
+  ()
+
+initial$1Options :: Record $1Options
+initial$1Options =
+  {}
+
+$2 :: forall w i . Array (PFProp $1Options) -> HH.Node HI.HTML$3 w i
+$2 options attr =
+  let
+    fullOptions =
+      buildOptionsST options initial$1Options
+  in
+   HH.$3 \$ class_ classNames.$2 : attr
+$0

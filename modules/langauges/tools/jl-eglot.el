@@ -7,7 +7,7 @@
   :hook (eglot-managed-mode . (lambda ()
                                 ;; (make-local-variable 'completion-at-point-functions)
                                 (setq-local completion-at-point-functions
-                                            (list (cape-super-capf
+                                            (list (cape-capf-super
                                                    #'eglot-completion-at-point
                                                    #'cape-dabbrev
                                                    #'yasnippet-capf
@@ -84,3 +84,10 @@
   :defer t
   :straight (:host github :repo "joaotavora/breadcrumb" :files ("breadcrumb.el"))
   :hook (eglot-managed-mode . breadcrumb-local-mode))
+
+(use-package eglot-booster
+  :after eglot
+  :straight (:host github :repo "jdtsmith/eglot-booster" :branch "main" :files ("*.el"))
+  :config (eglot-booster-mode)
+  :custom (eglot-booster-no-remote-boost t)
+  )
