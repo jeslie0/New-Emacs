@@ -315,27 +315,26 @@
   (jl/org-mode-Cc-keys)
   (jl/org-mode-global-keys)
   :config
-  (setq
-   org-todo-keywords '((sequence "TODO" "WAITING" "|" "DONE" "CANCELLED"))
-   org-todo-keyword-faces '(("WAITING" . "aquamarine1") ("CANCELLED" . "red"))
-   org-display-remote-inline-images 'download
-   org-hide-emphasis-markers nil
-   org-src-tab-acts-natively t
-   org-pretty-entities nil
-   org-startup-folded t
-   org-hide-block-startup t
-   org-edit-src-content-indentation 0
-   org-startup-with-latex-preview t
-   org-image-actual-width nil
-   org-preview-latex-image-directory "/tmp/ltximg/"
-   org-export-backends (cons 'beamer (default-value 'org-export-backends))
-   org-babel-default-header-args (cons '(:async . "") (default-value 'org-babel-default-header-args))
+  (setq org-todo-keywords '((sequence "TODO" "WAITING" "|" "DONE" "CANCELLED"))
+        org-todo-keyword-faces '(("WAITING" . "aquamarine1") ("CANCELLED" . "red"))
+        org-display-remote-inline-images 'download
+        org-hide-emphasis-markers nil
+        org-src-tab-acts-natively t
+        org-pretty-entities nil
+        org-startup-folded t
+        org-hide-block-startup t
+        org-edit-src-content-indentation 0
+        org-startup-with-latex-preview t
+        org-image-actual-width nil
+        org-preview-latex-image-directory "/tmp/ltximg/"
+        org-export-backends (cons 'beamer (default-value 'org-export-backends))
+        org-babel-default-header-args (cons '(:async . "") (default-value 'org-babel-default-header-args))
 
-   ;; Latex in Org
-   org-preview-latex-default-process 'luasvg
-   org-latex-compiler "lualatex"
-   org-highlight-latex-and-related '(latex script entities)
-   org-format-latex-options (plist-put org-format-latex-options :background "Transparent"))
+        ;; Latex in Org
+        org-preview-latex-default-process 'luasvg
+        org-latex-compiler "lualatex"
+        org-highlight-latex-and-related '(latex script entities)
+        org-format-latex-options (plist-put org-format-latex-options :background "Transparent"))
 
   (defadvice org-babel-execute-src-block (around load-language nil activate)
     "Load language if needed"
@@ -540,12 +539,14 @@
 
 (defun jl/org-mode-visual-fill ()
   (setq visual-fill-column-width 100
-        visual-fill-column-center-text t)
+        ;; visual-fill-column-center-text t
+        )
   (visual-fill-column-mode 1))
 
 (use-package visual-fill-column
   :defer t
-  :hook (org-mode . jl/org-mode-visual-fill))
+  :hook (org-mode . jl/org-mode-visual-fill)
+  )
 
 ;; (use-package org-fragtog
 ;;   :defer t

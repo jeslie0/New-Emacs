@@ -9,20 +9,6 @@ If the universal prefix argument is used then kill also the window."
         (kill-buffer-and-window)
       (kill-buffer))))
 
-(defun toggle-centered-buffer ()
-  "Toggle visual centering of the current buffer."
-  (interactive)
-  (cl-letf ((writeroom-maximize-window nil)
-         (writeroom-mode-line t))
-    (call-interactively 'writeroom-mode)))
-
-(defun toggle-distraction-free ()
-  "Toggle visual distraction free mode."
-  (interactive)
-  (cl-letf ((writeroom-maximize-window t)
-         (writeroom-mode-line nil))
-    (call-interactively 'writeroom-mode)))
-
 (use-package perspective
   :defer .1
   :general
