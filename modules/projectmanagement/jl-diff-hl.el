@@ -16,10 +16,8 @@
   (dired-mode . diff-hl-dired-mode-unless-remote)
   (magit-pre-refresh . diff-hl-magit-pre-refresh)
   (magit-post-refresh . diff-hl-magit-post-refresh)
-  :init
-  (unless (display-graphic-p)
-    ((add-hook 'prog-mode-hook #'diff-hl-margin-mode)
-     (add-hook 'text-mode-hook #'diff-hl-margin-mode)))
+  ;; (unless (display-graphic-p)
+  ;;   ((prog-mode-hook  text-mode-hook) . diff-hl-margin-mode))
   :custom
   (diff-hl-fringe-face-function '(lambda (type _pos)
                                    (intern (format "diff-hl-%s" type))))

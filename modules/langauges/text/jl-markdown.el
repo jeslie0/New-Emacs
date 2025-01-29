@@ -2,10 +2,11 @@
   :mode
   (("\\.mkd\\'" . markdown-mode)
    ("\\.mdk\\'" . markdown-mode)
-   ("\\.mdx\\'" . markdown-mode))
+   ("\\.mdx\\'" . markdown-mode)
+   ("README\\.md\\'" . gfm-mode))
   :general
   (jl/major-modes
-    :keymaps 'markdown-mode-map
+    :keymaps '(gfm-mode-map markdown-mode-map)
     :states '(normal visual operator)
     :major-modes t
 
@@ -27,6 +28,11 @@
     ;; Indentation
     ">"   'markdown-indent-region
     "<"   'markdown-outdent-region
+    "c-"  #'markdown-promote
+    "c="  #'markdown-demote
+    "cb"  #'markdown-outline-previous-same-level
+    "cd"  #'markdown-d
+    "cf" #'markdown-outline-next-same-level
     ;; Buffer-wide commands
     "c]"  'markdown-complete-buffer
     "cc"  'markdown-check-refs

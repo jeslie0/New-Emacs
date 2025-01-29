@@ -174,10 +174,6 @@
   :config
   (auctex-latexmk-setup))
 
-
-(use-package lsp-latex
-  :defer t)
-
 (use-package latex-change-env
   :defer t
   :general
