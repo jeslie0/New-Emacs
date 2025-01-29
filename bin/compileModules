@@ -45,7 +45,13 @@
 
 
 (load-file (concat user-emacs-directory "modules.el"))
-(file-name-list-to-string (mapcar (lambda (key) (alist-get key modules-alist)) user-modules))
+(file-name-list-to-string
+ (mapcar (lambda (key)
+           (let ((value (assq key modules-alist)))
+             (if value
+                 value
+               (error "Error: Module key '%s' not found in modules-alist" key))))
+         user-modules))
 (message (format "Generated %sinit.el" user-emacs-directory))
 
 
