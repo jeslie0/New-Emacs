@@ -51,7 +51,7 @@
   :init
   (progn
     (load-file (let ((coding-system-for-read 'utf-8))
-                 (shell-command-to-string "agda-mode locate"))))
+                 (shell-command-to-string "agda --emacs-mode locate"))))
   :config
   (set-input-method "Agda")
   (defhydra jl/agda-goal-navigation (:hint nil)

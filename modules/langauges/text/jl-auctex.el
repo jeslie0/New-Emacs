@@ -182,3 +182,8 @@
     :states '(normal visual motion)
     :major-modes t
     "C" #'latex-change-env))
+
+(use-package cdlatex
+  :defer t
+  ;; :hook (LaTeX-mode . cdlatex-mode)
+  )

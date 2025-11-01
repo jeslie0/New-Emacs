@@ -284,7 +284,7 @@
   ;; (set-face-attribute 'org-table nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'org-block nil :inherit 'fixed-pitch)
 
-  (set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch :family jl/prog-font)
+  ;; (set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch :family jl/prog-font)
   (set-face-attribute 'org-code nil   :inherit '(shadow fixed-pitch) :family jl/prog-font)
   (set-face-attribute 'org-table nil   :inherit '(shadow fixed-pitch) :family jl/prog-font)
   (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch) :family jl/prog-font)
@@ -324,7 +324,7 @@
         org-startup-folded t
         org-hide-block-startup t
         org-edit-src-content-indentation 0
-        org-startup-with-latex-preview t
+        org-startup-with-latex-preview nil
         org-image-actual-width nil
         org-preview-latex-image-directory "/tmp/ltximg/"
         org-export-backends (cons 'beamer (default-value 'org-export-backends))
@@ -387,9 +387,7 @@
      ("n" "Notes" entry
       (file "~/Documents/Org/Notes/notes.org")
       "* %?")
-     ("r" "Research Notes" entry
-      (file "~/Documents/Org/Research/notes.org")
-      "* %u \n %?")
+     ("* %u \n %?")
      ("w" "org-protocol" entry (file "~/Documents/Org/GTD/inbox.org")
       "* TODO Review %a\n%U\n%:initial\n" :immediate-finish t)
      ))
@@ -488,10 +486,13 @@
   :custom
   (org-roam-v2-ack t)
   (org-roam-graph-viewer #'browse-url-firefox)
-  (org-roam-directory "~/Documents/Roam/")
+  (org-roam-directory "~/Documents/Roam/content")
   (org-roam-node-display-template (concat "${title:*} " (propertize "${tags}" 'face 'org-tag)))
   :init
   (jl/org-roam-templates)
+  (setq org-roam-capture-templates '(("d" "default" plain "%?"
+                                      :target (file+head "${slug}.org"
+                                                         "#+title: ${title}\n"))))
   (setq org-roam-dailies-capture-templates
         '(("d" "default" entry
            "* %?"

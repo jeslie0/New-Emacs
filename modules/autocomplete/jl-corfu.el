@@ -44,6 +44,7 @@
   :config
   (global-corfu-mode)
   (corfu-popupinfo-mode)
+  (setq text-mode-ispell-word-completion nil)
   (general-define-key :keymaps 'corfu-map
                       :states 'insert
                       [escape] 'jl/corfu-quit))

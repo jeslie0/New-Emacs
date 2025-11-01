@@ -47,7 +47,7 @@
 (load-file (concat user-emacs-directory "modules.el"))
 (file-name-list-to-string
  (mapcar (lambda (key)
-           (let ((value (assq key modules-alist)))
+           (let ((value (alist-get key modules-alist nil)))
              (if value
                  value
                (error "Error: Module key '%s' not found in modules-alist" key))))

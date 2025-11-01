@@ -50,7 +50,7 @@
   (add-to-list 'eglot-server-programs `(python-ts-mode . ,(eglot-alternatives '("pylsp" "pyls" ("pyright-langserver" "--stdio") "jedi-language-server"))))
   (add-to-list 'eglot-server-programs `((c-ts-mode c++-ts-mode) . ,(eglot-alternatives '("clangd" "ccls"))))
   (add-to-list 'eglot-server-programs '(cmake-ts-mode . ("cmake-language-server")))
-  (add-to-list 'eglot-server-programs '(nix-mode . ("nil")))
+  (add-to-list 'eglot-server-programs '(nix-mode . ("nixd")))
   ;; Speedups?
   (fset #'jsonrpc--log-event #'ignore)
   (setq eglot-events-buffer-size 0)
@@ -85,9 +85,9 @@
   :straight (:host github :repo "joaotavora/breadcrumb" :files ("breadcrumb.el"))
   :hook (eglot-managed-mode . breadcrumb-local-mode))
 
-(use-package eglot-booster
-  :after eglot
-  :straight (:host github :repo "jdtsmith/eglot-booster" :branch "main" :files ("*.el"))
-  :config (eglot-booster-mode)
-  :custom (eglot-booster-no-remote-boost t)
-  )
+;; (use-package eglot-booster
+;;   :after eglot
+;;   :straight (:host github :repo "jdtsmith/eglot-booster" :branch "main" :files ("*.el"))
+;;   :config (eglot-booster-mode)
+;;   :custom (eglot-booster-no-remote-boost t)
+;;   )

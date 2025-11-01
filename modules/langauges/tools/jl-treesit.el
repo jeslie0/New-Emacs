@@ -43,32 +43,33 @@
   ;;
   ;;  M-x customize-group RET combobulate RET
   ;;
-  (use-package combobulate
-    :straight (:host github :repo "mickeynp/combobulate" :branch "master" :files ("*.el"))
-    :general
-    (jl/C-c-keys
-      :keymaps 'combobulate-key-map
-      :states '(normal visual operator)
-      "o"  '(:ignore t :which-key "combobulate")
-      "oe" '(:ignore t :which-key "envelope")
-      "oh" '(:ignore t :which-key "highlight")
-      "ot" '(:ignore t :which-key "edit")
-      "ox" '(:ignore t :which-key "xref")
-      "oB" '(:ignore t :which-key "Builder")
+  ;; (use-package combobulate
+  ;;   :straight (:host github :repo "mickeynp/combobulate" :branch "master" :files ("*.el"))
+  ;;   :general
+  ;;   (jl/C-c-keys
+  ;;     :keymaps 'combobulate-key-map
+  ;;     :states '(normal visual operator)
+  ;;     "o"  '(:ignore t :which-key "combobulate")
+  ;;     "oe" '(:ignore t :which-key "envelope")
+  ;;     "oh" '(:ignore t :which-key "highlight")
+  ;;     "ot" '(:ignore t :which-key "edit")
+  ;;     "ox" '(:ignore t :which-key "xref")
+  ;;     "oB" '(:ignore t :which-key "Builder")
 
-      )
-    :preface
-    ;; You can customize Combobulate's key prefix here.
-    ;; Note that you may have to restart Emacs for this to take effect!
-    (setq combobulate-key-prefix "C-c o")
+  ;;     )
+  ;;   :preface
+  ;;   ;; You can customize Combobulate's key prefix here.
+  ;;   ;; Note that you may have to restart Emacs for this to take effect!
+  ;;   (setq combobulate-key-prefix "C-c o")
 
-    ;; Optional, but recommended.
-    ;;
-    ;; You can manually enable Combobulate with `M-x
-    ;; combobulate-mode'.
-    :hook ((python-ts-mode . combobulate-mode)
-           (js-ts-mode . combobulate-mode)
-           (css-ts-mode . combobulate-mode)
-           (yaml-ts-mode . combobulate-mode)
-           (typescript-ts-mode . combobulate-mode)
-           (tsx-ts-mode . combobulate-mode))))
+  ;;   ;; Optional, but recommended.
+  ;;   ;;
+  ;;   ;; You can manually enable Combobulate with `M-x
+  ;;   ;; combobulate-mode'.
+  ;;   :hook ((python-ts-mode . combobulate-mode)
+  ;;          (js-ts-mode . combobulate-mode)
+  ;;          (css-ts-mode . combobulate-mode)
+  ;;          (yaml-ts-mode . combobulate-mode)
+  ;;          (typescript-ts-mode . combobulate-mode)
+  ;;          (tsx-ts-mode . combobulate-mode)))
+  )
