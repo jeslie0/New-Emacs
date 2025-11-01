@@ -372,7 +372,7 @@
 ;; 2. add this as link parameter for http and https
 (org-link-set-parameters "http"  :image-data-fun #'org-http-image-data-fn)
 (org-link-set-parameters "https" :image-data-fun #'org-http-image-data-fn)
-(require 'org-yt)
+;; (require 'org-yt)
   :custom
   (org-agenda-files '("~/Documents/Calendar/Agenda.org"))
   ;; Org capture
@@ -638,8 +638,8 @@
   )
 
 ;; 3. pull in org-yt which will advise ~org-display-inline-images~ how to do the extra handling
-(use-package org-yt
-  :defer t
-  :straight (:host github :repo "TobiasZawada/org-yt" :files ("*.el"))
-  :after org
-  )
+;; (use-package org-yt
+;;   :defer t
+;;   :straight (:host github :repo "TobiasZawada/org-yt" :files ("*.el"))
+;;   :after org
+;;   )

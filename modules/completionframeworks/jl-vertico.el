@@ -10,19 +10,13 @@ folder, otherwise delete a character backward"
       (delete-backward-char arg)))
 
 (use-package vertico
-  :straight (vertico :includes vertico-directory
-                     :files (:defaults "extensions/vertico-directory.el"))
   :general (:keymaps 'vertico-map
                      "C-j" 'vertico-next
                      "C-k" 'vertico-previous
-                     "C-g" 'vertico-exit
-                     "RET" 'vertico-directory-enter
-                     "DEL" 'vertico-directory-delete-char
-                     "M-DEL" 'vertico-directory-delete-word)
-  ;; Tidy shadowed file names
-  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy)
+                     "C-g" 'vertico-exit)
   :custom
   (vertico-cycle t)
+  (vertico-sort-function 'vertico-sort-history-alpha)
   :init
   (vertico-mode)
   :config
@@ -31,13 +25,29 @@ folder, otherwise delete a character backward"
           (apply (if vertico-mode
                      #'consult-completion-in-region
                    #'completion--in-region)
-                 args))))
+                 args)))
+  )
+
+(use-package vertico-directory
+  :straight (:host github :repo "minad/vertico" :files ("extensions/vertico-directory.el"))
+  :after vertico
+  :bind (:map vertico-map
+              ("RET" . vertico-directory-enter)
+              ("DEL" . vertico-directory-delete-char)
+              ("M-DEL" . vertico-directory-delete-word))
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy)
+  )
 
 ;;; Marginalia
 (use-package marginalia
   :after vertico
-  :custom
-  (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+  ;; :custom
+  ;; (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+  ;; Bind `marginalia-cycle' locally in the minibuffer.  To make the binding
+  ;; available in the *Completions* buffer, add it to the
+  ;; `completion-list-mode-map'.
+  :bind (:map minibuffer-local-map
+         ("M-A" . marginalia-cycle))
   :init
   (marginalia-mode))
 
@@ -69,8 +79,14 @@ folder, otherwise delete a character backward"
   :defer t
   :after vertico
   :init
-  (setq completion-styles '(orderless basic)
-        completion-category-overrides '((file (styles basic partial-completion)))))
+  (setq completion-styles '(orderless basic substring partial-completion flex)
+        completion-category-overrides '((file (styles basic partial-completion)))
+        completion-category-defaults nil ;; Disable defaults, use our settings
+        read-file-name-completion-ignore-case t
+        read-buffer-completion-ignore-case t
+        completion-ignore-case t
+        completion-pcm-leading-wildcard t
+        ))
 
 ;;; Savehist
 (use-package savehist

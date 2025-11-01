@@ -1,5 +1,5 @@
 (setq straight-fix-flycheck t                ;; Gives a fix for flycheck
-      straight-check-for-modifications 'live ;; Gives massive speed up to startup time
+      straight-check-for-modifications '(check-on-save) ;; Gives massive speed up to startup time
       straight-use-package-by-default t
       straight-repository-branch "develop")     ;; Defaults use-package to use straight
 
