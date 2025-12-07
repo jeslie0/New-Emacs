@@ -51,6 +51,7 @@
   (add-to-list 'eglot-server-programs `((c-ts-mode c++-ts-mode) . ,(eglot-alternatives '("clangd" "ccls"))))
   (add-to-list 'eglot-server-programs '(cmake-ts-mode . ("cmake-language-server")))
   (add-to-list 'eglot-server-programs '(nix-mode . ("nixd")))
+  (add-to-list 'eglot-server-programs '(typst-ts-mode . ("tinymist")))
   ;; Speedups?
   (fset #'jsonrpc--log-event #'ignore)
   (setq eglot-events-buffer-size 0)
