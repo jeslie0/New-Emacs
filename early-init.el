@@ -28,6 +28,11 @@
 (electric-pair-mode -1); Turns off automatic pairing of brackets
 ;; (electric-indent-mode -1) ;; Turns off automatic indenting
 
+;; Turn off outline minor mode for treesitter based modes, since it
+;; causes some bugs.
+(setq outline-minor-mode-allowed-function
+      (lambda () (not (treesit-parser-list))))
+
 
 
 ;; Make the initial buffer load faster by setting it to fundamental-mode

@@ -33,14 +33,15 @@
     "tt" 'cargo-process-current-test
     "tb" 'cargo-process-current-file-tests))
 
-(use-package rust-mode
+(use-package rust-ts-mode
   :defer t
+  :mode (("\\.rs\\'" . rust-ts-mode))
   :general
  (jl/major-modes
-   :keymaps 'rust-mode-map
+   :keymaps 'rust-ts-mode-map
    :states '(normal visual operator)
    :major-modes t
-   "=" 'rust-format-buffer))
+   ))
 
 (use-package ob-rust
   :defer t)
