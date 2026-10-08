@@ -16,23 +16,26 @@
 
 
 (defun delete-file-and-buffer ()
-  "Removes file connected to current buffer and kills buffer."
+  "Remove file connected to current buffer and kill buffer.  Use VC if the file is under version control."
   (interactive)
   (let ((filename (buffer-file-name))
         (buffer (current-buffer))
         (name (buffer-name)))
-    (if (not (and filename (file-exists-p filename)))
-        (ido-kill-buffer)
-      (if (yes-or-no-p
-           (format "Are you sure you want to delete this file: '%s'?" name))
-          (cond ((vc-backend filename) (vc-delete-file filename))
-                (progn
-                  (delete-file filename t)
-                  (kill-buffer buffer)
-                  (when (projectile-project-p))
-                  (call-interactively #'projectile-invalidate-cache))
-                (message "File deleted: '%s'" filename))
-        (message "Canceled: File deletion")))))
+    (cond
+     ;; Buffer not associated with a file. Just kill the buffer
+     ((not (and filename (file-exists-p filename)))
+      (ido-kill-buffer))
+     ;; File is under version control.
+     ((vc-backend filename)
+      (vc-delete-file filename))
+     ;; Not under VC - ask user to delete
+     ((yes-or-no-p (format "Are you sure you want to delete this file: '%s'?" name))
+      (delete-file filename t)
+      (kill-buffer buffer)
+      (message "File deleted: '%s'" name))
+     ;; Declined
+     (t
+      (message "Cancelled: File deletion")))))
 
 (defun rename-file-and-buffer ()
   "Rename the current buffer and file it is visiting."
