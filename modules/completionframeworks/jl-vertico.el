@@ -52,6 +52,25 @@ folder, otherwise delete a character backward"
   (marginalia-mode))
 
 ;;; Consult
+
+(defun jgl/consult-grep (&optional dir initial)
+  "Start search in DIR for INITIAL input with ripgrep if available, then git-grep, then grep."
+  (interactive "P")
+  (cond
+   ;; Search with ripgrep
+   ((executable-find "rg")
+    (consult-ripgrep dir initial))
+   ;; Search with git-grep
+   ((and (executable-find "git") (vc-root-dir))
+    (consult-git-grep dir initial))
+   ;; Search with grep
+   ((executable-find "grep")
+    (consult-grep dir initial))
+   ;; Report o searching tool found
+   (t
+    (message "Neither rg no grep were found"))))
+
+
 (use-package consult
   :defer t
   :general
@@ -63,7 +82,7 @@ folder, otherwise delete a character backward"
     "ff" '(find-file :which-key "find file")
     "tt" '(consult-theme :which-key "choose theme")
     "bb" 'persp-switch-to-buffer*
-    "/"  'consult-ripgrep)
+    "/"  'jgl/consult-grep)
   (jl/major-modes
     :keymaps 'org-mode-map
     :states '(normal visual operator)
