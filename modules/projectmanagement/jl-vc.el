@@ -55,10 +55,6 @@ default name for the new branch/tag."
   (if (eq (vc-responsible-backend default-directory) 'SVN)
       (jgl/vc-svn-switch-branch)
     (call-interactively #'vc-switch-branch)))
-
-;; Emacs 28+: replace the stock binding (C-x v b s)
-(with-eval-after-load 'vc
-  (define-key vc-prefix-map (kbd "b s") #'jgl/vc-switch-branch))
 ;;; END-VIBED
 
 (use-package vc
@@ -81,5 +77,4 @@ default name for the new branch/tag."
     "gvM" '(:ignore t :which-key "Mergebase"))
   :init
   (with-eval-after-load 'vc-svn
-    (advice-add 'vc-svn-create-tag :override #'jgl/vc-svn-create-tag))
-  )
+    (advice-add 'vc-svn-create-tag :override #'jgl/vc-svn-create-tag)))
