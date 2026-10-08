@@ -25,13 +25,14 @@
         (ido-kill-buffer)
       (if (yes-or-no-p
            (format "Are you sure you want to delete this file: '%s'?" name))
-          (progn
-            (delete-file filename t)
-            (kill-buffer buffer)
-            (when (projectile-project-p))
-              (call-interactively #'projectile-invalidate-cache))
-            (message "File deleted: '%s'" filename))
-        (message "Canceled: File deletion"))))
+          (cond ((vc-backend filename) (vc-delete-file filename))
+                (progn
+                  (delete-file filename t)
+                  (kill-buffer buffer)
+                  (when (projectile-project-p))
+                  (call-interactively #'projectile-invalidate-cache))
+                (message "File deleted: '%s'" filename))
+        (message "Canceled: File deletion")))))
 
 (defun rename-file-and-buffer ()
   "Rename the current buffer and file it is visiting."
