@@ -182,7 +182,7 @@
    mu4e-html2text-command "w3m -dump -T text/html -o display_link_number=true"
    mu4e-view-show-images t
    mu4e-image-max-width 800
-   ;; mu4e-view-prefer-html t
+   mu4e-view-prefer-html nil
    mu4e-use-fancy-chars t))
 
 ;;; Attachement warning

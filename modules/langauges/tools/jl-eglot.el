@@ -4,14 +4,14 @@
   ;;                  :repo "git://git.sv.gnu.org/emacs.git"
   ;;                  :files ("lisp/progmodes/eglot.el"))
   :commands (eglot)
-  :hook (eglot-managed-mode . (lambda ()
-                                ;; (make-local-variable 'completion-at-point-functions)
-                                (setq-local completion-at-point-functions
-                                            (list (cape-capf-super
-                                                   #'eglot-completion-at-point
-                                                   #'cape-dabbrev
-                                                   #'yasnippet-capf
-                                                   )))))
+  ;; :hook (eglot-managed-mode . (lambda ()
+  ;;                               ;; (make-local-variable 'completion-at-point-functions)
+  ;;                               (setq-local completion-at-point-functions
+  ;;                                           (list (cape-capf-super
+  ;;                                                  #'eglot-completion-at-point
+  ;;                                                  #'cape-dabbrev
+  ;;                                                  #'yasnippet-capf
+  ;;                                                  )))))
   :general
   (jl/lsp-keys
     :keymaps 'eglot-mode-map

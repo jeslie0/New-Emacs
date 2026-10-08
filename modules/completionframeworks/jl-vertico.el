@@ -113,15 +113,6 @@ folder, otherwise delete a character backward"
   :init
   (savehist-mode))
 
-;;; App launcher
-(use-package app-launcher
-  :defer t
-  :straight '(app-launcher :host github :repo "SebastienWae/app-launcher")
-  :commands (app-launcher-run-app)
-  :general
-  (jl/SPC-keys
-    "RET" 'app-launcher-run-app))
-
 ;;; Embark
 (use-package embark
   :defer t

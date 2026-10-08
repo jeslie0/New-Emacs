@@ -28,10 +28,12 @@
 (electric-pair-mode -1); Turns off automatic pairing of brackets
 ;; (electric-indent-mode -1) ;; Turns off automatic indenting
 
-;; Turn off outline minor mode for treesitter based modes, since it
-;; causes some bugs.
-(setq outline-minor-mode-allowed-function
-      (lambda () (not (treesit-parser-list))))
+;; Ignore some errors with treesit and outline-minor-mode
+(advice-add 'outline-revert-buffer-restore-visibility
+            :around (lambda (orig-fn)
+                      (condition-case nil
+                          (funcall orig-fn)
+                        (wrong-type-argument nil))))
 
 
 

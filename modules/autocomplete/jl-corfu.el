@@ -13,7 +13,7 @@
             )
   :custom
   (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
-  (corfu-auto t)                 ;; Enable auto completion
+  ;; (corfu-auto t)                 ;; Enable auto completion
   (corfu-separator ?\s)          ;; Orderless field separator
   (corfu-quit-at-boundary t)     ;; Quit at completion boundary
   (corfu-quit-no-match t)        ;; Quit if there is no match
@@ -22,9 +22,9 @@
   (corfu-on-exact-match nil)     ;; Configure handling of exact matches
   (corfu-echo-documentation nil) ;; Disable documentation in the echo area
   (corfu-scroll-margin 5)        ;; Use scroll margin
-  (corfu-auto-delay 0.0)         ;; Don't wait to show corfu after
+  (corfu-auto-delay 0.2)         ;; Don't wait to show corfu after
                                  ;; prefix has been hit
-  (corfu-auto-prefix 1)
+  (corfu-auto-prefix 2)
   ;; Works with `indent-for-tab-command'. Make sure tab doesn't indent when you
   ;; want to perform completion
   (tab-always-indent 'complete)
