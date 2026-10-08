@@ -44,9 +44,9 @@
     (if (not (and filename (file-exists-p filename)))
         (message "Buffer is not visiting a file!")
       (let ((new-name (read-file-name "New name: " filename)))
-        (cond
-         ((vc-backend filename) (vc-rename-file filename new-name))
-         (t
+        (if (vc-backend filename)
+            (vc-rename-file filename new-name)
+         (progn
           (rename-file filename new-name t)
           (set-visited-file-name new-name t t)))))))
 
