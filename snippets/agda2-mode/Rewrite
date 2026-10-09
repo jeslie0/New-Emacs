@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: Rewrite
-# key: REWRITE
-# --
-{-# REWRITE $0 #-}

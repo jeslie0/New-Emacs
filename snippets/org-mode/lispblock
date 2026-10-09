@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: Lisp block
-# key: <lisp
-# --
-#+begin_src lisp
-$0
-#+end_src

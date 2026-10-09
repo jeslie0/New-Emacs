@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: Roam Header
-# key: RoamHeader
-# --
-#+author: James Leslie
-#+options: h:2 num:t tex:t
-#+STARTUP: latexpreview inlineimages hideblocks
-#+LATEX_HEADER: \usepackage{math-packages} \usepackage{math-macros}

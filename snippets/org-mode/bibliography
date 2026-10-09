@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: Bibliography
-# key: <bib
-# --
-* References
-bibliography:bibliography.bib

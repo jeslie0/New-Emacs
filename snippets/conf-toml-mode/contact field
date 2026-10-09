@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: contact field
-# key: <co
-# --
-[user]
-name = "$1"
-phone_number = "$2"

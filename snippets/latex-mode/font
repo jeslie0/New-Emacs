@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: font
-# key: <font
-# --
-\usepackage{fontspec}
-\setmainfont{$1}
-$0
